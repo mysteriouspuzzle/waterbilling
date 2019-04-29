@@ -6,7 +6,6 @@ class Reader extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('consumers');
-		$this->load->model('reading');
 		$this->load->model('rates');
 		$this->load->model('smsapi');
 		$this->load->model('bills');
