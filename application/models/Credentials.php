@@ -20,7 +20,7 @@ class Credentials extends CI_Model {
 	public function getAccounts(){
 		return $this->db->get_where('credentials', array('userLevel!='=>'Administrator'))->result();
 	}
-	public function getDrivers(){
-		return $this->db->get_where('credentials', array('userLevel'=>'Driver'))->result();
+	public function getAccountDetails($id){
+		return $this->db->get_where('credentials', array('id='=>$id))->row();
 	}
 }

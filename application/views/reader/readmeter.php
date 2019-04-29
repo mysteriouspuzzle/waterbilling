@@ -41,7 +41,7 @@
           <?php if($this->session->flashdata('error')){ ?>
             <div class="alert alert-danger">
                <a href="#" class="close" data-dismiss="alert">&times;</a>
-               <span class="ti ti-check"></span> <?php echo $this->session->flashdata('error'); ?>
+               <span class="ti ti-info"></span> <?php echo $this->session->flashdata('error'); ?>
            </div>
           <?php } ?>
         </div>

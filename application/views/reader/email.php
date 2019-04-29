@@ -318,8 +318,8 @@ Sizes: [
 															<table border="0" cellpadding="30" cellspacing="0" width="100%">
 																<tr>
 																	<td align="center" valign="top" class="textContent">
-																		<h1 style="color:#FFFFFF;line-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:35px;font-weight:normal;margin-bottom:5px;text-align:center;">ORMOC WATERWORKS and SEWERAGE ADMINISTRATION</h1>
-																		<h2 style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;">Aunibing St., Ormoc City</h2>
+																		<h1 style="color:#FFFFFF;line-height:100%;font-family:Courier New,sans-serif;font-size:23px;font-weight:normal;margin-bottom:5px;text-align:center;">ORMOC WATERWORKS and SEWERAGE ADMINISTRATION</h1>
+																		<h2 style="text-align:center;font-weight:normal;font-family:Courier New,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;">Aunibing St., Ormoc City</h2>
 																	</td>
 																</tr>
 															</table>
@@ -347,7 +347,23 @@ Sizes: [
 												<table border="0" cellpadding="30" cellspacing="0" width="500" class="flexibleContainer">
 													<tr>
 														<td valign="top" width="500" class="flexibleContainerCell">
-
+															<h2><center style="font-family:Courier New">Water Bill Statement</center></h2>
+															<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+																<tr>
+																	<td align="left" valign="top" class="flexibleContainerBox">
+																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
+																			<tr>
+																				<td align="left" class="textContent">
+                                          <div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Account No.: <?php echo $consumer->lastname. ', ' . $consumer->firstname ?></div>
+																					<div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Name: <?php echo $consumer->account_number ?></div>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr><td><div style="border-bottom:1px dashed gray"></div></td></tr>
+															</table>
+															<br><br>
 															<!-- CONTENT TABLE // -->
 															<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
 																<tr>
@@ -355,8 +371,8 @@ Sizes: [
 																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
 																			<tr>
 																				<td align="left" class="textContent">
-                                          <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Period To: <?php echo $details->present_date ?></div>
-																					<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Period From: <?php echo $details->previous_date ?></div>
+                                          <div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Period To: <?php echo $details->present_date ?></div>
+																					<div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Period From: <?php echo $details->previous_date ?></div>
 																				</td>
 																			</tr>
 																		</table>
@@ -365,8 +381,9 @@ Sizes: [
 																		<table class="flexibleContainerBoxNext" border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
 																			<tr>
 																				<td align="left" class="textContent">
-                                          <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Present Reading: <?php echo $details->present_meter ?></div>
-																					<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Previous Reading:<?php echo $details->previous_meter ?></div>
+                                          <div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Present Reading: <?php echo $details->present_meter ?></div>
+																					<div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Previous Reading:<?php echo $details->previous_meter ?></div>
+																					<div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Consumption: <?php echo $details->consumption ?></div>
 																				</td>
 																			</tr>
 																		</table>
@@ -382,50 +399,38 @@ Sizes: [
 											</td>
 										</tr>
 									</table>
+									<div style="border-bottom:1px dashed gray;border-top:1px dashed gray;height: 5px;"></div>
 									<!-- // CENTERING TABLE -->
 								</td>
 							</tr>
 							<!-- // MODULE ROW -->
 
-                            <tr mc:hideable>
+							<tr mc:hideable>
 								<td align="center" valign="top">
 									<!-- CENTERING TABLE // -->
-									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr>
-											<td align="center" valign="top">
+									
 												<!-- FLEXIBLE CONTAINER // -->
 												<table border="0" cellpadding="30" cellspacing="0" width="500" class="flexibleContainer">
 													<tr>
-														<td valign="top" width="500" class="flexibleContainerCell">
-
-															<!-- CONTENT TABLE // -->
-															<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
-																<tr>
-																	<td align="left" valign="top" class="flexibleContainerBox">
-																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
-																			<tr>
-																				<td align="left" class="textContent">
-                                                                                    <h3><div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">DUE DATE: <?php echo $details->due_date ?></div></h3>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td align="left" class="textContent">
-                                                                                    <h3><div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">TOTAL AMOUNT DUE: <?php echo $details->bill ?></div></h3>
-																				</td>
-																			</tr>
-																		</table>
-																	</td>
-																</tr>
-															</table>
-															<!-- // CONTENT TABLE -->
-
+														<td align="left" class="textContent">
+															<h3><div style="text-align:center;font-family:Lucida Console,sans-serif;font-size:15px; font-weight:bold;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-top:9px;">TOTAL AMOUNT DUE: <?php echo $details->bill ?></div></h3>
+														</td>
+													</tr>
+													<tr><td><div style="border-bottom:1px dashed gray;border-top:1px dashed gray;height: 5px;"></div></td></tr>
+												</table>
+												<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+													<tr>
+														<td align="left" class="textContent">
+														<h3><div style="text-align:center;font-family:Lucida Console,sans-serif;font-size:15px; margin-bottom:0;color:#5F5F5F;line-height:135%;font-weight:normal;">DUE DATE: <?php echo date('M d, Y', strtotime($details->due_date)) ?></div></h3>
+														</td>
+													</tr>
+													<tr>
+														<td align="left" class="textContent">
+														<h3><div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:15px; margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px;font-weight:normal;">Meter Reader: <?php echo $reader->fullname ?></div></h3>
 														</td>
 													</tr>
 												</table>
 												<!-- // FLEXIBLE CONTAINER -->
-											</td>
-										</tr>
-									</table>
 									<!-- // CENTERING TABLE -->
 								</td>
 							</tr>
@@ -448,7 +453,7 @@ Sizes: [
 																<tr>
 																	<td align="center" valign="middle" style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
 																		<?php $encbill = base64_encode($tid) ?>
-																		<a href="localhost/waterbilling/paypal?sandbox=AZAuyMwdMbtZPTRrf-AP5H9VK7XUBvHgp78LJoa0RWojFQpSR00QSBjq5ZsqpTJbPJRtfs7lg4XOMLjL&bill=<?php echo $encbill ?>">
+																		<a href="localhost/waterbilling/paypal?sandbox=AZAuyMwdMbtZPTRrf-AP5H9VK7XUBvHgp78LJoa0RWojFQpSR00QSBjq5ZsqpTJbPJRtfs7lg4XOMLjL&bill=<?php echo $encbill ?>&consumer=<?php echo $consumer->id ?>">
 																			<img id="paypal-button-container" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" alt="Buy now with PayPal" />
 																		</a>
 																	</td>
@@ -489,7 +494,7 @@ Sizes: [
 																		<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																			<tr>
 																				<td valign="top" class="textContent">
-																					<div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#5F5F5F;line-height:135%;">THIS IS NOT AN OFFICIAL RECEIPT</div>
+																					<div style="text-align:center;font-family:Lucida Console,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#5F5F5F;line-height:135%;">THIS IS NOT AN OFFICIAL RECEIPT</div>
 																				</td>
 																			</tr>
 																		</table>

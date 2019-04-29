@@ -10,6 +10,7 @@ class Reader extends CI_Controller {
 		$this->load->model('rates');
 		$this->load->model('smsapi');
 		$this->load->model('bills');
+		$this->load->model('credentials');
 		$this->load->view('layout/header');
 		if(!isset($_SESSION['wbUserID'])){
 			redirect('./');
@@ -119,6 +120,9 @@ class Reader extends CI_Controller {
 		$mail->Subject = 'Water Billing System Receipt';
 		$data['details'] = $details;
 		$data['tid'] = $tId;
+		$data['consumer'] = $consumer;
+		$rId = $_SESSION['wbUserID'];
+		$data['reader'] = $this->credentials->getAccountDetails($rId);
 		$msg = $this->load->view('reader/email',$data,true);
 		$mail->Body    = $msg;
 		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
@@ -141,6 +145,31 @@ class Reader extends CI_Controller {
 		}
 	}
 	public function email(){
-		$this->load->view('reader/email');
+		$consumer = $this->consumers->getConsumerDetails(3);
+		$bill = array(
+			'current_date'=>date('Y-m-d'),
+			'prev_meter'=>$this->input->post('prev_meter'),
+			'current_meter'=>$this->input->post('current_meter'),
+			'bill'=>$this->input->post('bill'),
+			'consumption'=>$this->input->post('consumption')
+		);
+		$data = array(
+			'consumer_id'=>3,
+			'previous_date'=>date('Y-m-d'),
+			'present_date'=>date('Y-m-d'),
+			'previous_meter'=>$this->input->post('prev_meter'),
+			'present_meter'=>$this->input->post('current_meter'),
+			'bill'=>$this->input->post('bill'),
+			'consumption'=>$this->input->post('consumption'),
+			'due_date'=>date('Y-m-d', strtotime(date('Y-m-d'). ' + 14 days')),
+			'status'=>'Unpaid'
+		);
+		$rId = $_SESSION['wbUserID'];
+		$data['reader'] = $this->credentials->getAccountDetails($rId);
+		$details = $this->bills->getBillDetails(6);
+		$data['details'] = $details;
+		$data['tid'] = 6;
+		$data['consumer'] = $consumer;
+		$this->load->view('reader/email', $data);
 	}
 }

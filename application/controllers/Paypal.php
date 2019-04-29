@@ -11,14 +11,6 @@ class Paypal extends CI_Controller {
 		$this->load->model('smsapi');
 		$this->load->model('bills');
 		$this->load->view('layout/header');
-		if(isset($_SESSION['wbUserID'])){
-			$this->logout();
-		}
-	}
-
-	function logout(){
-		session_destroy();
-		redirect('./');
 	}
 
 	public function index(){
