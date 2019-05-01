@@ -354,8 +354,8 @@ Sizes: [
 																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
 																			<tr>
 																				<td align="left" class="textContent">
-                                          <div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Account No.: <?php echo $consumer->lastname. ', ' . $consumer->firstname ?></div>
-																					<div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Name: <?php echo $consumer->account_number ?></div>
+                                          <div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Account No.: <?php echo $consumer->account_number ?></div>
+																					<div style="text-align:left;font-family:Lucida Console,sans-serif;font-size:13px;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-left:20px">Name: <?php echo $consumer->lastname. ', ' . $consumer->firstname ?></div>
 																				</td>
 																			</tr>
 																		</table>

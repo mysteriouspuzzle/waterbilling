@@ -71,16 +71,16 @@ class Reader extends CI_Controller {
 	}
 	public function sendbill($id) {
 		$consumer = $this->consumers->getConsumerDetails($id);
-		$bill = array(
-			'current_date'=>date('Y-m-d'),
-			'prev_meter'=>$this->input->post('prev_meter'),
-			'current_meter'=>$this->input->post('current_meter'),
-			'bill'=>$this->input->post('bill'),
-			'consumption'=>$this->input->post('consumption')
-		);
+		$checkNewConsumer = $this->bills->countPreviousMeterReading($id);
+		if($checkNewConsumer == 0){
+			$prev_date = $consumer->date_added;
+		}else{
+			$tempdate = $this->bills->getPreviousMeterReading($id);
+			$prev_date = $tempdate->present_date;
+		}
 		$data = array(
 			'consumer_id'=>$id,
-			'previous_date'=>date('Y-m-d'),
+			'previous_date'=>$prev_date,
 			'present_date'=>date('Y-m-d'),
 			'previous_meter'=>$this->input->post('prev_meter'),
 			'present_meter'=>$this->input->post('current_meter'),
@@ -91,12 +91,12 @@ class Reader extends CI_Controller {
 		);
 		$tId = $this->bills->saveTransaction($data);
 		$details = $this->bills->getBillDetails($tId);
-		$this->sendEmail($consumer, $details, $bill, $tId);
-		$this->sendSms($consumer, $details, $bill);
+		$this->sendEmail($consumer, $details, $tId);
+		$this->sendSms($consumer, $details);
 		$this->session->set_flashdata('success','SMS and email successfully sent to consumer.');
 		redirect('reader/readmeter/'.$id);
 	}
-	function sendEmail($consumer, $details, $bill, $tId){
+	function sendEmail($consumer, $details, $tId){
 		$this->load->view('PHPMailerAutoload');
 		$mail = new PHPMailer;
 
@@ -133,7 +133,7 @@ class Reader extends CI_Controller {
 				redirect('reader/readmeter/'.$consumer->id);
 		}
 	}
-	function sendSms($consumer, $details, $bill){
+	function sendSms($consumer, $details){
 		$api = $this->smsapi->getEndpoint();
 		$msg = "Your bill for $details->date to " .$bill['current_date']. " is " .$bill['bill']. ". For more info check your email.";
 		$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
