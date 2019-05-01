@@ -41,4 +41,8 @@ class Bills extends CI_Model {
   public function getPaidBills(){
     return $this->db->order_by('bill_id', 'desc')->get_where('bills', array('status'=>'Paid'))->result();
   }
+
+  public function getDiscoConsumers(){
+		return $this->db->query("select * from bills where due_date >= now()-interval 3 month")->result();
+	}
 }
