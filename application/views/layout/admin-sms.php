@@ -31,9 +31,6 @@
                     <li><a href="administrator/rates">View Rates</a></li>
                 </ul>
             </li>
-            <li class="">
-                <a href="administrator/sales"> <i class="menu-icon ti ti-money"></i>Sales </a>
-            </li>
             <li class="menu-item-has-children dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envelope"></i>SMS</a>
                 <ul class="sub-menu children dropdown-menu">

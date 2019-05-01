@@ -161,7 +161,7 @@ class Administrator extends CI_Controller {
 		$firstname = $this->input->post('firstname');
 		$middlename = $this->input->post('middlename');
 		$lastname = $this->input->post('lastname');
-		$birthdate = $this->input->post('birthdate');
+		// $birthdate = $this->input->post('birthdate');
 		$address = $this->input->post('address');
 		$contact = $this->input->post('contact');
 		$email = $this->input->post('email');
@@ -171,7 +171,7 @@ class Administrator extends CI_Controller {
 			'firstname'=>ucwords($firstname),
 			'middlename'=>ucwords($middlename),
 			'lastname'=>ucwords($lastname),
-			'birthdate'=>date('Y-m-d', strtotime($birthdate)),
+			// 'birthdate'=>date('Y-m-d', strtotime($birthdate)),
 			'address'=>ucwords($address),
 			'contactNumber'=>$contact,
 			'email'=>$email,

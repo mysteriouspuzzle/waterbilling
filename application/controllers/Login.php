@@ -36,6 +36,8 @@ class Login extends CI_Controller {
 				redirect('teller/');
 			}elseif($_SESSION['wbUserLevel']=='Reader'){
 				redirect('reader/');
+			}elseif($_SESSION['wbUserLevel']=='Accounting'){
+				redirect('accounting/');
 			}
 		}
 	}

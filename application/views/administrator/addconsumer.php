@@ -2,7 +2,7 @@
 <?php $this->load->view('layout/header'); ?>
 <body>
 
-    <?php $this->load->view('layout/teller-consumers'); ?>
+    <?php $this->load->view('layout/admin-consumers'); ?>
 
     <!-- Right Panel -->
 
@@ -61,10 +61,10 @@
                   <div class="col col-md-4"><label for="lastname" class=" form-control-label">Last Name</label></div>
                   <div class="col-12 col-md-8"><input type="text" id="lastname" name="lastname" placeholder="Last Name" class="form-control text-capitalize" required></div>
                 </div>
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                   <div class="col col-md-4"><label for="birthdate" class=" form-control-label">Birthdate</label></div>
                   <div class="col-12 col-md-8"><input type="date" id="birthdate" format="dd/mm/yyyy" name="birthdate" placeholder="Birthdate" class="form-control datepicker" required></div>
-                </div>
+                </div> -->
                 <div class="row form-group">
                   <div class="col col-md-4"><label for="address" class=" form-control-label">Address</label></div>
                   <div class="col-12 col-md-8"><input type="text" id="address" name="address" placeholder="Address" class="form-control text-capitalize" required></div>
