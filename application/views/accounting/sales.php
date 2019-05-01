@@ -2,7 +2,7 @@
 <?php $this->load->view('layout/header'); ?>
 <body>
 
-    <?php $this->load->view('layout/teller-consumers'); ?>
+    <?php $this->load->view('layout/accounting-sales'); ?>
 
     <!-- Right Panel -->
 
@@ -15,7 +15,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>View Consumers</h1>
+                        <h1>Sales</h1>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                           <li><a href="administrator/">Dashboard</a></li>
-                          <li class="active">View Consumers</li>
+                          <li class="active">Sales</li>
                         </ol>
                     </div>
                 </div>
@@ -44,24 +44,23 @@
                 <table class="table table-bordered" id="bootstrap-data-table">
                   <thead>
                     <tr>
+                      <th>Account Number</th>
                       <th>Name</th>
-                      <th>Birthdate</th>
-                      <th>Address</th>
-                      <th>Contact Number</th>
-                      <th>Action</th>
+                      <th>Classification</th>
+                      <th>Payment Date</th>
+                      <th>Payment Type</th>
+                      <th>Amount</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($consumers as $consumer) { ?>
+                    <?php foreach($sales as $sale) { ?>
                     <tr>
-                        <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
-                        <td><?php echo $consumer->birthdate ?></td>
-                        <td><?php echo $consumer->address ?></td>
-                        <td><?php echo $consumer->contactNumber ?></td>
-                        <td>
-                            <a href="teller/records/<?php echo $consumer->id ?>" class="btn btn-primary">Records</a>
-                            <a href="teller/paymentdetails/<?php echo $consumer->id ?>" class="btn btn-info">Payment</a>
-                        </td>
+                        <td><?php echo $sale->account_number ?></td>
+                        <td><?php echo $sale->lastname. ', ' .$sale->firstname ?></td>
+                        <td><?php echo $sale->classification ?></td>
+                        <td><?php echo $sale->payment_date ?></td>
+                        <td><?php echo ucwords($sale->payment_type) ?></td>
+                        <td><?php echo '₱'.$sale->bill ?></td>
                     </tr>
                   <?php } ?>
                   </tbody>

@@ -19,6 +19,11 @@ class Paypal extends CI_Controller {
 		$this->load->view('paypal/payment', $data);
 	}
 	public function receipt($id){
+		if(!$id){
+			redirect('paypal/receipt/'.$_SESSION['tempId']);
+		}else{
+			$_SESSION['tempId'] = $id;
+		}
 		$this->bills->paidBill($id);
 		$billDetails = $this->bills->getBillDetails($id);
 		$consumer = $this->consumers->getConsumerDetails($billDetails->consumer_id);

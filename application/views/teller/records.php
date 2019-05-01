@@ -41,30 +41,44 @@
         <div class="col-lg-12">
             <div class="card">
               <div class="card-body card-block">
-                <table class="table table-bordered" id="bootstrap-data-table">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Birthdate</th>
-                      <th>Address</th>
-                      <th>Contact Number</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($consumers as $consumer) { ?>
-                    <tr>
-                        <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
-                        <td><?php echo $consumer->birthdate ?></td>
-                        <td><?php echo $consumer->address ?></td>
-                        <td><?php echo $consumer->contactNumber ?></td>
-                        <td>
-                            <a href="teller/records/<?php echo $consumer->id ?>" class="btn btn-primary">Records</a>
-                            <a href="teller/paymentdetails/<?php echo $consumer->id ?>" class="btn btn-info">Payment</a>
-                        </td>
-                    </tr>
-                  <?php } ?>
-                  </tbody>
+                <table class="table table-striped table-hover" id="bootstrap-data-table">
+                    <thead>
+                        <tr>
+                        <th>Period From</th>
+                        <th>Period To</th>
+                        <th>Previous Reading</th>
+                        <th>Present Reading</th>
+                        <th>Consumption</th>
+                        <th>Total Amount</th>
+                        <th>Due Date</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                    if(count($records) == 0){
+                        ?><tr>
+                            <td colspan="7">No bills available.</td>
+                        </tr><?php
+                    }else{
+                        foreach($records as $record){ ?>
+                            <tr>
+                            <td><?php echo $record->previous_date ?></td>
+                            <td><?php echo $record->present_date ?></td>
+                            <td><?php echo $record->previous_meter ?></td>
+                            <td><?php echo $record->present_meter ?></td>
+                            <td><?php echo $record->consumption ?></td>
+                            <td><?php echo '₱'.$record->bill ?></td>
+                            <td><?php echo $record->due_date ?></td>
+                            <?php if($record->status == 'Unpaid'){ ?>
+                                <td><a href="consumer/paymentdetails/<?php echo $record->bill_id ?>" class="btn btn-info">Pay</a></td>
+                            <?php }else{ ?>
+                                <td>Paid</td>
+                            <?php } ?>
+                            </tr>
+                        <?php } 
+                    } ?>
+                    </tbody>
                 </table>
               </div>
             </div>

@@ -11,16 +11,8 @@ class Login extends CI_Controller {
 		if(isset($_SESSION['wbUserID'])){
 			if($_SESSION['wbUserLevel']=='Teller'){
 				redirect('teller/');
-			}elseif($_SESSION['wbUserLevel']=='Driver'){
-				redirect('driver/');
-			}elseif($_SESSION['wbUserLevel']=='Assistant Manager'){
-				redirect('asstmanager/');
-			}elseif($_SESSION['wbUserLevel']=='Dispatcher'){
-				redirect('dispatcher/');
-			}elseif($_SESSION['wbUserLevel']=='Passenger Barcode Personnel'){
-				redirect('pbp/');
-			}elseif($_SESSION['wbUserLevel']=='Cargo Barcode Personnel'){
-				redirect('cbp/');
+			}elseif($_SESSION['wbUserLevel']=='Accounting'){
+				redirect('accounting/');
 			}
 		}
 	}

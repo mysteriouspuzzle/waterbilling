@@ -2,7 +2,7 @@
 <?php $this->load->view('layout/header'); ?>
 <body>
 
-    <?php $this->load->view('layout/teller-consumers'); ?>
+    <?php $this->load->view('layout/accounting-disco'); ?>
 
     <!-- Right Panel -->
 
