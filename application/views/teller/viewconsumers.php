@@ -44,18 +44,18 @@
                 <table class="table table-bordered" id="bootstrap-data-table">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Birthdate</th>
-                      <th>Address</th>
-                      <th>Contact Number</th>
-                      <th>Action</th>
+                        <th>Account Number</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php foreach($consumers as $consumer) { ?>
                     <tr>
+                        <td><?php echo $consumer->account_number ?></td>
                         <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
-                        <td><?php echo $consumer->birthdate ?></td>
                         <td><?php echo $consumer->address ?></td>
                         <td><?php echo $consumer->contactNumber ?></td>
                         <td>
