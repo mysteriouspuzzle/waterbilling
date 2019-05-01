@@ -39,7 +39,7 @@
           <?php } ?>
         </div>
         <div class="col-lg-8">
-          <form action="teller/storeconsumer" method="post" class="form-horizontal">
+          <form action="administrator/storeconsumer" method="post" class="form-horizontal">
             <div class="card">
               <div class="card-header">
                 <strong>Add Consumer</strong> Form
@@ -89,7 +89,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                   <i class="ti ti-arrow-right"></i> Continue
                 </button>
                 <input type="submit" name="submit" id="submit" style="display:none">

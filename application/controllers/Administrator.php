@@ -175,7 +175,8 @@ class Administrator extends CI_Controller {
 			'address'=>ucwords($address),
 			'contactNumber'=>$contact,
 			'email'=>$email,
-			'classification'=>$classification
+			'classification'=>$classification,
+			'date_added'=>date('Y-m-d'),
 		);
 		$consumer_id = $this->consumers->storeConsumer($data);
 		$data = array(
