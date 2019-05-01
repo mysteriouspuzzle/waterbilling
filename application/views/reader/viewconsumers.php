@@ -45,11 +45,10 @@
                   <thead>
                     <tr>
                         <th>Account Number</th>
-                      <th>Name</th>
-                      <th>Birthdate</th>
-                      <th>Address</th>
-                      <th>Contact Number</th>
-                      <th>Action</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -59,7 +58,8 @@
                         <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
                         <td><?php echo $consumer->address ?></td>
                         <td><?php echo $consumer->contactNumber ?></td>
-                        <td><a href="reader/consumerhistory?id=<?php echo $consumer->id ?>" class="btn btn-primary">History</a>
+                        <td>
+                        <!-- <a href="reader/consumerhistory?id=<?php echo $consumer->id ?>" class="btn btn-primary">History</a> -->
                         <a href="reader/readmeter/<?php echo $consumer->id ?>" class="btn btn-success">Read Meter</a>
                         <!-- <a href="teller/consumercargo?id=<?php echo $consumer->id ?>" class="btn btn-success">Cargo</a> -->
                         </td>
