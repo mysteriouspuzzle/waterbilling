@@ -156,6 +156,12 @@ class Administrator extends CI_Controller {
 	public function addconsumer(){
 		$this->load->view('administrator/addconsumer');
 	}
+
+	public function editconsumer($id){
+		$data['consumer'] = $this->consumers->getConsumerDetails($id);
+		$this->load->view('administrator/editconsumer', $data);
+	}
+
 	public function storeconsumer(){
 		$acct_number = $this->input->post('acct_number');
 		$firstname = $this->input->post('firstname');
@@ -192,6 +198,35 @@ class Administrator extends CI_Controller {
 		$this->session->set_flashdata('success','Consumer succcessfully saved.');
 		redirect('administrator/addconsumer');
 	}
+
+	public function updateconsumer(){
+		$consumer_id = $this->input->post('consumer_id');
+		$acct_number = $this->input->post('acct_number');
+		$firstname = $this->input->post('firstname');
+		$middlename = $this->input->post('middlename');
+		$lastname = $this->input->post('lastname');
+		// $birthdate = $this->input->post('birthdate');
+		$address = $this->input->post('address');
+		$contact = $this->input->post('contact');
+		$email = $this->input->post('email');
+		$classification = $this->input->post('classification');
+		$data = array(
+			'account_number'=>$acct_number,
+			'firstname'=>ucwords($firstname),
+			'middlename'=>ucwords($middlename),
+			'lastname'=>ucwords($lastname),
+			// 'birthdate'=>date('Y-m-d', strtotime($birthdate)),
+			'address'=>ucwords($address),
+			'contactNumber'=>$contact,
+			'email'=>$email,
+			'classification'=>$classification,
+			'date_added'=>date('Y-m-d'),
+		);
+		$this->consumers->updateConsumer($consumer_id, $data);
+		$this->session->set_flashdata('success','Consumer succcessfully update.');
+		redirect('administrator/editconsumer/'.$consumer_id);
+	}
+
 	public function viewconsumers(){
 		$data['consumers'] = $this->consumers->getAllConsumers();
 		$this->load->view('administrator/viewconsumers', $data);

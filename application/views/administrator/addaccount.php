@@ -50,8 +50,7 @@
               <div class="card-header">
                 <strong>New Account</strong> Form
               </div>
-              <div class="card-body card-block">
-                <form action="administrator/storeaccount" method="post" class="form-horizontal">
+                <div class="card-body card-block"> 
                   <div class="row form-group">
                     <div class="col col-md-3"><label for="hf-email" class=" form-control-label">Account Type</label></div>
                     <div class="col-12 col-md-9">
@@ -84,15 +83,14 @@
                   <div class="row form-group">
                     <div class="col col-md-3"><label for="cpassword" class=" form-control-label">Confirm Password</label></div>
                     <div class="col-12 col-md-9"><input type="password" name="cpassword" placeholder="Confirm Password" class="form-control" id="inputPasswordConfirm" data-match="#password" data-match-error="Whoops, these don't match" ></div>
-                    <!-- <div class="help-block with-errors"></div> --> 
+                    <div class="col-12 col-md-9 offset-md-3 cpass-error"></div> 
                   </div>
-                </form>
               </div>
               <div class="card-footer">
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-sm" id="tempsubmit" data-toggle="modal" data-target="#myModal" disabled>
                   <i class="fa fa-dot-circle-o"></i> Submit
                 </button>
-                <input type="submit" name="submit" id="submit" style="display:none">
+                <input type="submit" name="submit" id="submit" value="Submit" style="display:none">
                 <button type="reset" class="btn btn-danger btn-sm">
                   <i class="fa fa-ban"></i> Reset
                 </button>
@@ -131,5 +129,14 @@
     $('#modal1').click(function(){
       $('#submit').click();
     });
-  })
+    $('#inputPasswordConfirm').keyup(function() {
+        if($('#password').val() !== $('#inputPasswordConfirm').val()){
+          $('.cpass-error').html('Password not match!')
+          $('#tempsubmit').attr('disabled','disabled')
+        }else{
+          $('.cpass-error').html('Password match!')
+          $('#tempsubmit').removeAttr('disabled')
+        }
+    });
+  });
 </script>

@@ -60,9 +60,9 @@
                         <!-- <td><?php //echo $consumer->birthdate ?></td> -->
                         <td><?php echo $consumer->address ?></td>
                         <td><?php echo $consumer->contactNumber ?></td>
-                        <td><a href="teller/consumerhistory?id=<?php echo $consumer->id ?>" class="btn btn-primary">History</a>
-                        <!-- <a href="teller/consumerrent?id=<?php echo $consumer->id ?>" class="btn btn-success">Rent</a> -->
-                        <!-- <a href="teller/consumercargo?id=<?php echo $consumer->id ?>" class="btn btn-success">Cargo</a> -->
+                        <td>
+                            <a href="administrator/consumerhistory?id=<?php echo $consumer->id ?>" class="btn btn-primary">History</a>
+                            <a href="administrator/editconsumer/<?php echo $consumer->id ?>" class="btn btn-success">Edit</a>
                         </td>
                     </tr>
                   <?php } ?>
