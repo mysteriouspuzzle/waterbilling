@@ -49,6 +49,7 @@
                       <th>Classification</th>
                       <th>Payment Date</th>
                       <th>Payment Type</th>
+                      <th>Status</th>
                       <th>Amount</th>
                     </tr>
                   </thead>
@@ -60,6 +61,7 @@
                         <td><?php echo $sale->classification ?></td>
                         <td><?php echo $sale->payment_date ?></td>
                         <td><?php echo ucwords($sale->payment_type) ?></td>
+                        <td><?php echo ucwords($sale->status) ?></td>
                         <td><?php echo '₱'.$sale->bill ?></td>
                     </tr>
                   <?php } ?>
