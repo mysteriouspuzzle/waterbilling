@@ -14,7 +14,10 @@
                 <a href="accounting/sales"> <i class="menu-icon fa fa-money"></i>Sales</a>
             </li>
             <li>
-                <a href="accounting/disco"> <i class="menu-icon fa fa-unlink"></i>Disconnectin/Due</a>
+                <a href="accounting/due"> <i class="menu-icon fa fa-calendar"></i>Due Date</a>
+            </li>
+            <li>
+                <a href="accounting/disco"> <i class="menu-icon fa fa-unlink"></i>Disconnection</a>
             </li>
         </ul>
     </div><!-- /.navbar-collapse -->

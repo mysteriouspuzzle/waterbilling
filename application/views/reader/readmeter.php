@@ -131,9 +131,9 @@
                         <div>
                             <?php 
                             if($current_meter == ''){ ?>
-                                <a class="btn btn-block btn-primary disabled">Send Email & SMS</a> <?php
+                                <a class="btn btn-block btn-primary disabled">Save and Send Notification</a> <?php
                             }else{ ?>
-                                <button type="submit" class="btn btn-block btn-primary">Send Email & SMS</button> <?php
+                                <button type="submit" class="btn btn-block btn-primary">Save and Send Notification</button> <?php
                             } ?>
                             
                         </div>

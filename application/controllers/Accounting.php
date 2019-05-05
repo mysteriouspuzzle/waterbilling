@@ -9,6 +9,7 @@ class Accounting extends CI_Controller {
 		$this->load->model('reading');
 		$this->load->model('bills');
 		$this->load->model('credentials');
+		$this->load->model('smsapi');
 		$this->load->view('layout/header');
 		if(!isset($_SESSION['wbUserID'])){
 			redirect('./');
@@ -23,17 +24,91 @@ class Accounting extends CI_Controller {
 	}
 
 	public function disco(){
-		$data['consumers'] = $this->bills->getDiscoConsumers();
+		$data['disco'] = $this->bills->getDiscoConsumers();
 		$this->load->view('accounting/disconnection', $data);
 	}
 
-	// public function sales(){
-	// 	$data['sales'] = $this->db->query("select c.account_number, c.firstname, c.lastname, c.classification, b.bill, b.payment_type, b.payment_date from consumers c, bills b where c.id = b.consumer_id and b.status = 'Paid'")->result();
-	// 	$this->load->view('accounting/sales', $data);
-	// }
+	public function due(){
+		$data['due'] = $this->bills->getDueConsumers();
+		$this->load->view('accounting/duedate', $data);
+	}
 
 	public function sales(){
 		$data['sales'] = $this->db->query("select c.account_number, c.firstname, c.lastname, c.classification, b.bill, b.payment_type, b.payment_date, b.status from consumers c, bills b where c.id = b.consumer_id order by bill_id desc")->result();
 		$this->load->view('accounting/sales', $data);
+	}
+
+	function sendEmail($consumers){
+		foreach($consumers as $consumer){
+			$this->load->view('PHPMailerAutoload');
+			$mail = new PHPMailer;
+
+			// $mail->SMTPDebug = 4;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'ssl://smtp.gmail.com:465';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'iamstevenjamesb@gmail.com';                 // SMTP username
+			$mail->Password = 'March181999';                           // SMTP password
+			$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+			// $mail->Port = 465;                                    // TCP port to connect to
+
+			$mail->setFrom($consumer->email, 'Water Billing System');
+			$mail->addAddress($consumer->email, $consumer->firstname . ' ' . $consumer->lastname);     // Add a recipient
+			$mail->addReplyTo('iamstevenjamesb@gmail.com', 'Information');
+
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$data['consumer'] = $consumer;
+			$consumerbills = $this->bills->getConsumerBills($consumer->consumer_id);
+			$total_bill = 0;
+			for($x = 0; $x < count($consumerbills); $x++){
+				if($x==0){
+					$dateTo = $consumerbills[$x]->present_date;
+				}
+				if($x==count($consumerbills)-1){
+					$dateFrom = $consumerbills[$x]->previous_date;
+				}
+				$total_bill += $consumerbills[$x]->bill;
+			}
+			$data['total_bill'] = $total_bill;
+			$data['dateTo'] = $dateTo;
+			$data['dateFrom'] = $dateFrom;
+			$mail->Subject = 'Water Billing System Disconnection Notice';
+			$msg = $this->load->view('accounting/email',$data,true);
+			$mail->Body    = $msg;
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			if(!$mail->send()) {
+					echo 'Message could not be sent.';
+					echo 'Mailer Error: ' . $mail->ErrorInfo;
+					echo "<script>alert('Please check your internet connection.')</script>";
+					redirect('accounting/disco');
+			}else{
+				$data = array(
+					'notification'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
+			}
+		}
+	}
+
+	function sendSms($consumers){
+		foreach($consumers as $consumer){
+			$api = $this->smsapi->getEndpoint();
+			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a disconnection notice. For more details check your email.";
+			$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
+			if($check == true){
+				$this->session->set_flashdata('success','SMS and Email succcessfully sent!');
+			}else{
+				$this->session->set_flashdata('error','Update your SMS API endpoint or check your connection.');
+			}
+		}
+	}
+
+	public function notifydiscoconsumers(){
+		$consumers = $this->bills->getUnsentDiscoConsumers();
+		$this->sendEmail($consumers);
+		$this->sendSms($consumers);
+		redirect('accounting/disco');
 	}
 }

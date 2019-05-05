@@ -2,7 +2,7 @@
 <?php $this->load->view('layout/header'); ?>
 <body>
 
-    <?php $this->load->view('layout/accounting-sales'); ?>
+    <?php $this->load->view('layout/accounting-due'); ?>
 
     <!-- Right Panel -->
 
@@ -15,7 +15,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Sales</h1>
+                        <h1>Disconnection</h1>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                           <li><a href="administrator/">Dashboard</a></li>
-                          <li class="active">Sales</li>
+                          <li class="active">Disconnection</li>
                         </ol>
                     </div>
                 </div>
@@ -38,37 +38,40 @@
            </div>
           <?php } ?>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12"><br>
+            <a href="accounting/notifydiscoconsumers" class="btn btn-info text-white"><span class="ti ti-announcement"></span> Send notification to unsent consumers</a>
+            <br><br>
             <div class="card">
               <div class="card-body card-block">
                 <table class="table table-bordered" id="bootstrap-data-table">
                   <thead>
                     <tr>
-                      <th>Account Number</th>
                       <th>Name</th>
-                      <th>Classification</th>
-                      <th>Payment Date</th>
-                      <th>Payment Type</th>
-                      <th>Status</th>
-                      <th>Amount</th>
+                      <th>Address</th>
+                      <th>Contact Number</th>
+                      <th>Disconnection Date</th>
+                      <th>Notification</th>
+                      <!-- <th>Action</th> -->
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($sales as $sale) { ?>
+                    <?php foreach($disco as $dc) { ?>
                     <tr>
-                        <td><?php echo $sale->account_number ?></td>
-                        <td><?php echo $sale->lastname. ', ' .$sale->firstname ?></td>
-                        <td><?php echo $sale->classification ?></td>
+                        <td><?php echo $dc->firstname. ' ' .$dc->lastname ?></td>
+                        <td><?php echo $dc->address ?></td>
+                        <td><?php echo $dc->contactNumber ?></td>
+                        <td><?php echo date('F d, Y', strtotime($dc->due_date)) ?></td>
                         <td><?php 
-                            if($sale->status == 'Paid') {
-                                echo $sale->payment_date;
+                            if($dc->notification == 'Sent'){
+                                ?><span class="text-info"><?php echo $dc->notification ?></span><?php
                             }else{
-                                echo 'Not available';
-                            }?>
-                        </td>
-                        <td><?php echo ucwords($sale->payment_type) ?></td>
-                        <td><?php echo ucwords($sale->status) ?></td>
-                        <td><?php echo '₱'.$sale->bill ?></td>
+                                ?><span class="text-danger"><?php echo $dc->notification ?></span><?php
+                            }
+                        ?></td>
+                        <!-- <td>
+                            <a href="teller/records/<?php echo $dc->id ?>" class="btn btn-primary">Records</a>
+                            <a href="teller/paymentdetails/<?php echo $dc->id ?>" class="btn btn-info">Payment</a>
+                        </td> -->
                     </tr>
                   <?php } ?>
                   </tbody>

@@ -135,7 +135,7 @@ class Reader extends CI_Controller {
 	}
 	function sendSms($consumer, $details, $tId){
 		$api = $this->smsapi->getEndpoint();
-		$msg = "Your account number ".$consumer['account_number']." has a bill amount of for P".$details['bill']." from ".$details['previous_date']." to ".$details['present_date'].". For more details check your email.";
+		$msg = "Your account number $consumer->account_number has a bill amount of for P$details->bill from $details->previous_date to $details->present_date. For more details check your email.";
 		$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
 		if($check == true){
 			$this->session->set_flashdata('success','SMS and Email succcessfully sent!');

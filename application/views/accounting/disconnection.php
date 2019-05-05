@@ -15,7 +15,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>View Consumers</h1>
+                        <h1>Disconnection</h1>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                           <li><a href="administrator/">Dashboard</a></li>
-                          <li class="active">View Consumers</li>
+                          <li class="active">Disconnection</li>
                         </ol>
                     </div>
                 </div>
@@ -38,30 +38,40 @@
            </div>
           <?php } ?>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12"><br>
+            <a href="accounting/notifydiscoconsumers" class="btn btn-info text-white"><span class="ti ti-announcement"></span> Send notification to unsent consumers</a>
+            <br><br>
             <div class="card">
               <div class="card-body card-block">
                 <table class="table table-bordered" id="bootstrap-data-table">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Birthdate</th>
                       <th>Address</th>
                       <th>Contact Number</th>
-                      <th>Action</th>
+                      <th>Disconnection Date</th>
+                      <th>Notification</th>
+                      <!-- <th>Action</th> -->
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($consumers as $consumer) { ?>
+                    <?php foreach($disco as $dc) { ?>
                     <tr>
-                        <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
-                        <td><?php echo $consumer->birthdate ?></td>
-                        <td><?php echo $consumer->address ?></td>
-                        <td><?php echo $consumer->contactNumber ?></td>
-                        <td>
-                            <a href="teller/records/<?php echo $consumer->id ?>" class="btn btn-primary">Records</a>
-                            <a href="teller/paymentdetails/<?php echo $consumer->id ?>" class="btn btn-info">Payment</a>
-                        </td>
+                        <td><?php echo $dc->firstname. ' ' .$dc->lastname ?></td>
+                        <td><?php echo $dc->address ?></td>
+                        <td><?php echo $dc->contactNumber ?></td>
+                        <td><?php echo date('F d, Y',strtotime(date('Y-m-d', strtotime($dc->due_date))." +3 month")) ?></td>
+                        <td><?php 
+                            if($dc->notification == 'Sent'){
+                                ?><span class="text-info"><?php echo $dc->notification ?></span><?php
+                            }else{
+                                ?><span class="text-danger"><?php echo $dc->notification ?></span><?php
+                            }
+                        ?></td>
+                        <!-- <td>
+                            <a href="teller/records/<?php echo $dc->id ?>" class="btn btn-primary">Records</a>
+                            <a href="teller/paymentdetails/<?php echo $dc->id ?>" class="btn btn-info">Payment</a>
+                        </td> -->
                     </tr>
                   <?php } ?>
                   </tbody>
