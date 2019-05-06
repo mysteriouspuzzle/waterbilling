@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2019 at 05:03 PM
+-- Generation Time: May 06, 2019 at 03:16 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -39,28 +39,33 @@ CREATE TABLE `bills` (
   `due_date` date NOT NULL,
   `status` varchar(10) NOT NULL,
   `payment_type` varchar(15) NOT NULL,
-  `payment_date` date NOT NULL
+  `payment_date` date NOT NULL,
+  `notification` varchar(15) NOT NULL,
+  `due_notif` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`bill_id`, `consumer_id`, `previous_date`, `present_date`, `previous_meter`, `present_meter`, `consumption`, `bill`, `date`, `due_date`, `status`, `payment_type`, `payment_date`) VALUES
-(1, 1, '2019-03-28', '2019-03-28', '0', '11', 11, 38.85, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01'),
-(2, 1, '2019-03-28', '2019-03-28', '0000', '12', 12, 42.70, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01'),
-(3, 1, '2019-03-28', '2019-03-28', '0000', '10', 10, 35.00, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01'),
-(4, 1, '2019-03-28', '2019-03-28', '0000', '30', 30, 116.00, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01'),
-(5, 3, '2019-03-30', '2019-03-30', '0000', '12', 12, 42.70, '0000-00-00', '0000-00-00', 'Paid', 'online', '0000-00-00'),
-(6, 3, '2019-04-25', '2019-04-25', '0012', '35', 23, 86.25, '0000-00-00', '2019-05-09', 'Paid', 'walk-in', '0000-00-00'),
-(7, 3, '2019-04-27', '2019-04-27', '0035', '45', 10, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00'),
-(8, 3, '2019-04-27', '2019-04-27', '0045', '50', 5, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00'),
-(9, 3, '2019-04-27', '2019-04-27', '0050', '64', 14, 50.40, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00'),
-(10, 3, '2019-04-27', '2019-04-27', '0064', '70', 6, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00'),
-(11, 3, '2019-04-27', '2019-04-27', '0070', '71', 1, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00'),
-(12, 3, '2019-04-27', '2019-04-27', '0071', '72', 1, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'online', '0000-00-00'),
-(13, 3, '2019-04-27', '2019-04-27', '0072', '73', 1, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'online', '0000-00-00'),
-(15, 2, '2019-04-01', '2019-05-01', '0000', '25', 25, 94.75, '0000-00-00', '2019-05-15', 'Unpaid', '', '0000-00-00');
+INSERT INTO `bills` (`bill_id`, `consumer_id`, `previous_date`, `present_date`, `previous_meter`, `present_meter`, `consumption`, `bill`, `date`, `due_date`, `status`, `payment_type`, `payment_date`, `notification`, `due_notif`) VALUES
+(1, 1, '2019-03-28', '2019-03-28', '0', '11', 11, 38.85, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01', 'Unsent', 'Unsent'),
+(2, 1, '2019-03-28', '2019-03-28', '0000', '12', 12, 42.70, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01', 'Unsent', 'Unsent'),
+(3, 1, '2019-03-28', '2019-03-28', '0000', '10', 10, 35.00, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01', 'Unsent', 'Unsent'),
+(4, 1, '2019-03-28', '2019-03-28', '0000', '30', 30, 116.00, '0000-00-00', '0000-00-00', 'Paid', 'walk-in', '2019-05-01', 'Unsent', 'Unsent'),
+(5, 3, '2019-03-30', '2019-03-30', '0000', '12', 12, 42.70, '0000-00-00', '0000-00-00', 'Paid', 'online', '0000-00-00', 'Unsent', 'Unsent'),
+(6, 3, '2019-04-25', '2019-04-25', '0012', '35', 23, 86.25, '0000-00-00', '2019-05-09', 'Paid', 'walk-in', '0000-00-00', 'Unsent', 'Unsent'),
+(7, 3, '2019-04-27', '2019-04-27', '0035', '45', 10, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00', 'Unsent', 'Unsent'),
+(8, 3, '2019-04-27', '2019-04-27', '0045', '50', 5, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00', 'Unsent', 'Unsent'),
+(9, 3, '2019-04-27', '2019-04-27', '0050', '64', 14, 50.40, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00', 'Unsent', 'Unsent'),
+(10, 3, '2019-04-27', '2019-04-27', '0064', '70', 6, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00', 'Unsent', 'Unsent'),
+(11, 3, '2019-04-27', '2019-04-27', '0070', '71', 1, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'walk-in', '0000-00-00', 'Unsent', 'Unsent'),
+(12, 3, '2019-04-27', '2019-04-27', '0071', '72', 1, 35.00, '0000-00-00', '2019-05-11', 'Paid', 'online', '0000-00-00', 'Unsent', 'Unsent'),
+(13, 3, '2019-04-27', '2019-04-27', '0072', '73', 1, 35.00, '2019-05-01', '2019-05-11', 'Paid', 'online', '2019-05-03', 'Unsent', 'Unsent'),
+(15, 2, '2019-02-01', '2019-05-01', '0000', '25', 25, 94.75, '2019-05-01', '2019-05-15', 'Paid', 'walk-in', '2019-05-05', 'Unsent', 'Unsent'),
+(16, 4, '2018-12-15', '2019-01-15', '0000', '23', 23, 86.25, '0000-00-00', '2019-02-01', 'Unpaid', '', '0000-00-00', 'Sent', 'Unsent'),
+(17, 4, '2019-05-04', '2019-05-04', '0000', '23', 23, 86.25, '0000-00-00', '2019-05-18', 'Unpaid', '', '0000-00-00', 'Unsent', 'Unsent'),
+(18, 8, '2019-05-01', '2019-05-06', '0000', '44', 44, 182.90, '0000-00-00', '2019-05-20', 'Unpaid', '', '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 
@@ -113,10 +118,11 @@ CREATE TABLE `consumers` (
 --
 
 INSERT INTO `consumers` (`id`, `account_number`, `firstname`, `middlename`, `lastname`, `birthdate`, `address`, `contactNumber`, `email`, `classification`, `password`, `online`, `date_added`) VALUES
-(1, 190001, 'Makisig', '', 'Gerero', '2009-03-04', 'Lacion City', '09342324255', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '0000-00-00'),
+(1, 190001, 'Makisig', '', 'Gerero', '2009-03-04', 'Lacion City', '09342324255', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '2019-05-03'),
 (2, 190002, 'Jake Joseph', 'Malinao', 'Lingatong', '2018-10-22', 'Bogo', '09328478343', 'mysterious.puzzle16@gmail.com', 'Residential', 'cc03e747a6afbbcbf8be7668acfebee5', 1, '2019-04-01'),
 (3, 190003, 'Apple', 'Orange', 'Lala', '2019-03-18', 'Sitio Pikas', '09097895572', 'mysterious.puzzle15@gmail.com', 'Residential', 'cc03e747a6afbbcbf8be7668acfebee5', 1, '0000-00-00'),
-(4, 190004, 'Mike', 'Excusemepo', 'Enriquez', '2017-08-15', 'Tambulilid, Ormoc City', '0945521986', 'iamstevenjamesb@gmail.com', 'Residential', '', 0, '0000-00-00');
+(4, 190004, 'Mike', 'Excusemepo', 'Enriquez', '2017-08-15', 'San Vicente, Ormoc City', '0945521986', 'iamstevenjamesb@gmail.com', 'Residential', '', 0, '0000-00-00'),
+(8, 190005, 'Marlou', '', 'Arizola', '1990-01-01', 'Mandaue, Cebu', '09123846723', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '2019-05-01');
 
 -- --------------------------------------------------------
 
@@ -155,7 +161,8 @@ INSERT INTO `credentials` (`id`, `fullname`, `username`, `password`, `userLevel`
 (1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'admin@admin.com'),
 (2, 'Mr. James Reid', 'reader', '1de9b0a30075ae8c303eb420c103c320', 'Reader', 'asd@afds.co'),
 (3, 'Ms. Sarah Geronimo', 'teller', '8482dfb1bca15b503101eb438f52deed', 'Teller', 'mysterious.puzzle15@gmail.com'),
-(4, 'Ms. Lovi Poe', 'accounting', 'd4c143f004d88b7286e6f999dea9d0d7', 'Accounting', 'accounting@gmail.com');
+(4, 'Ms. Lovi Poe', 'accounting', 'd4c143f004d88b7286e6f999dea9d0d7', 'Accounting', 'accounting@gmail.com'),
+(5, 'Richard Gomez', 'richard', '6ae199a93c381bf6d5de27491139d3f9', 'Reader', 'asdf@fadd.com');
 
 -- --------------------------------------------------------
 
@@ -232,7 +239,8 @@ INSERT INTO `reading` (`id`, `consumer_id`, `previous_read`, `next_read`, `rate`
 (1, 2, '', '0000', 0, '2019-03-01', 0, 0),
 (2, 1, '', '0000', 0, '2019-03-01', 0, 0),
 (3, 3, '', '0000', 0, '2019-03-30', 0, 0),
-(4, 4, '', '0000', 0, '2019-03-30', 0, 0);
+(4, 4, '', '0000', 0, '2019-03-30', 0, 0),
+(5, 8, '', '0000', 0, '2019-05-01', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -250,7 +258,7 @@ CREATE TABLE `sms_api` (
 --
 
 INSERT INTO `sms_api` (`id`, `endpoint`) VALUES
-(1, 'http://192.168.254.103:8080/');
+(1, 'http://192.168.1.7:8080/');
 
 -- --------------------------------------------------------
 
@@ -346,7 +354,7 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `bill_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `bill_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `codes`
 --
@@ -356,7 +364,7 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT for table `consumers`
 --
 ALTER TABLE `consumers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `consumer_logs`
 --
@@ -366,7 +374,7 @@ ALTER TABLE `consumer_logs`
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `online_verification`
 --
@@ -381,7 +389,7 @@ ALTER TABLE `rates`
 -- AUTO_INCREMENT for table `reading`
 --
 ALTER TABLE `reading`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `sms_api`
 --
