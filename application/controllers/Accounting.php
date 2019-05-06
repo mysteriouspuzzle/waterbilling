@@ -111,4 +111,11 @@ class Accounting extends CI_Controller {
 		$this->sendSms($consumers);
 		redirect('accounting/disco');
 	}
+
+	public function notifydueconsumers(){
+		$consumers = $this->bills->getUnsentDueConsumers();
+		$this->sendEmail($consumers);
+		$this->sendSms($consumers);
+		redirect('accounting/due');
+	}
 }

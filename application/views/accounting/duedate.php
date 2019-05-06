@@ -39,7 +39,7 @@
           <?php } ?>
         </div>
         <div class="col-lg-12"><br>
-            <a href="accounting/notifydiscoconsumers" class="btn btn-info text-white"><span class="ti ti-announcement"></span> Send notification to unsent consumers</a>
+            <a href="accounting/notifydueconsumers" class="btn btn-info text-white"><span class="ti ti-announcement"></span> Send notification to unsent consumers</a>
             <br><br>
             <div class="card">
               <div class="card-body card-block">
@@ -49,28 +49,28 @@
                       <th>Name</th>
                       <th>Address</th>
                       <th>Contact Number</th>
-                      <th>Disconnection Date</th>
+                      <th>Due Date</th>
                       <th>Notification</th>
                       <!-- <th>Action</th> -->
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($disco as $dc) { ?>
+                    <?php foreach($due as $d) { ?>
                     <tr>
-                        <td><?php echo $dc->firstname. ' ' .$dc->lastname ?></td>
-                        <td><?php echo $dc->address ?></td>
-                        <td><?php echo $dc->contactNumber ?></td>
-                        <td><?php echo date('F d, Y', strtotime($dc->due_date)) ?></td>
+                        <td><?php echo $d->firstname. ' ' .$d->lastname ?></td>
+                        <td><?php echo $d->address ?></td>
+                        <td><?php echo $d->contactNumber ?></td>
+                        <td><?php echo date('F d, Y', strtotime($d->due_date)) ?></td>
                         <td><?php 
-                            if($dc->notification == 'Sent'){
-                                ?><span class="text-info"><?php echo $dc->notification ?></span><?php
+                            if($d->due_notif == 'Sent'){
+                                ?><span class="text-info"><?php echo $d->due_notif ?></span><?php
                             }else{
-                                ?><span class="text-danger"><?php echo $dc->notification ?></span><?php
+                                ?><span class="text-danger"><?php echo $d->due_notif ?></span><?php
                             }
                         ?></td>
                         <!-- <td>
-                            <a href="teller/records/<?php echo $dc->id ?>" class="btn btn-primary">Records</a>
-                            <a href="teller/paymentdetails/<?php echo $dc->id ?>" class="btn btn-info">Payment</a>
+                            <a href="teller/records/<?php echo $d->id ?>" class="btn btn-primary">Records</a>
+                            <a href="teller/paymentdetails/<?php echo $d->id ?>" class="btn btn-info">Payment</a>
                         </td> -->
                     </tr>
                   <?php } ?>

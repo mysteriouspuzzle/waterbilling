@@ -47,10 +47,14 @@ class Bills extends CI_Model {
   }
 
   public function getDueConsumers(){
-		return $this->db->query("SELECT * FROM bills b, consumers c WHERE b.due_date < (NOW() - INTERVAL 3 MONTH) and b.status = 'Unpaid' and b.consumer_id = c.id order by b.notification desc")->result();
+		return $this->db->query("SELECT * FROM bills b, consumers c WHERE b.due_date <= NOW() and b.status = 'Unpaid' and b.consumer_id = c.id order by b.due_notif desc")->result();
   }
   
   public function getUnsentDiscoConsumers(){
 		return $this->db->query("SELECT * FROM bills b, consumers c WHERE b.due_date < (NOW() - INTERVAL 3 MONTH) and b.status = 'Unpaid' and b.consumer_id = c.id and b.notification = 'Unsent' order by b.notification desc")->result();
+  }
+  
+  public function getUnsentDueConsumers(){
+		return $this->db->query("SELECT * FROM bills b, consumers c WHERE b.due_date <= NOW() and b.status = 'Unpaid' and b.consumer_id = c.id and b.notification = 'Unsent' order by b.notification desc")->result();
 	}
 }

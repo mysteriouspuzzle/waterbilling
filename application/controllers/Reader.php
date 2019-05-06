@@ -87,7 +87,9 @@ class Reader extends CI_Controller {
 			'bill'=>$this->input->post('bill'),
 			'consumption'=>$this->input->post('consumption'),
 			'due_date'=>date('Y-m-d', strtotime(date('Y-m-d'). ' + 14 days')),
-			'status'=>'Unpaid'
+			'status'=>'Unpaid',
+			'notification'=>'Unsent',
+			'due_notif'=>'Unsent',
 		);
 		$tId = $this->bills->saveTransaction($data);
 		$details = $this->bills->getBillDetails($tId);
