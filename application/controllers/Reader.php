@@ -129,10 +129,9 @@ class Reader extends CI_Controller {
 		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 		if(!$mail->send()) {
-				echo 'Message could not be sent.';
-				echo 'Mailer Error: ' . $mail->ErrorInfo;
-				echo "<script>alert('Please check your internet connection.')</script>";
-				redirect('reader/readmeter/'.$consumer->id);
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			mail($consumer->email,"Water Billing System Receipt",$msg, $headers);
 		}
 	}
 	function sendSms($consumer, $details, $tId){

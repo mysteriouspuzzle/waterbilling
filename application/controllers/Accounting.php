@@ -79,10 +79,14 @@ class Accounting extends CI_Controller {
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			if(!$mail->send()) {
-					echo 'Message could not be sent.';
-					echo 'Mailer Error: ' . $mail->ErrorInfo;
-					echo "<script>alert('Please check your internet connection.')</script>";
-					redirect('accounting/disco');
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+						
+						mail($consumer->email,"Water Billing System Disconnection Notice",$msg, $headers);
+				$data = array(
+					'notification'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
 			}else{
 				$data = array(
 					'notification'=>'Sent'
@@ -112,16 +116,20 @@ class Accounting extends CI_Controller {
 
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$data['consumer'] = $consumer;
-			$mail->Subject = 'Water Billing System Disconnection Notice';
+			$mail->Subject = 'Water Billing System Due Date Notice';
 			$msg = $this->load->view('accounting/due-email',$data,true);
 			$mail->Body    = $msg;
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			if(!$mail->send()) {
-					echo 'Message could not be sent.';
-					echo 'Mailer Error: ' . $mail->ErrorInfo;
-					echo "<script>alert('Please check your internet connection.')</script>";
-					redirect('accounting/disco');
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+						
+						mail($consumer->email,"Water Billing System Due Date Notice",$msg, $headers);
+				$data = array(
+					'due_notif'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
 			}else{
 				$data = array(
 					'due_notif'=>'Sent'

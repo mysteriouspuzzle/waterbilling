@@ -20,7 +20,6 @@ class Admin extends CI_Controller {
 		$u = $this->input->post('username');
 		$p = $this->input->post('password');
 		$p = md5($p);
-		echo $p;
 		$user = $this->credentials->checkCredential($u, $p);
 		$count = count($user);
 		if($count==0){
@@ -30,7 +29,6 @@ class Admin extends CI_Controller {
 			$_SESSION['wbUserID'] =$user->id;
 			$_SESSION['wbUserLevel'] =$user->userLevel;
 			$_SESSION['wbUser'] =$user->fullname;
-			$_SESSION['wbUserLocation'] =$user->Location;
 			redirect('administrator/');
 		}
 	}
