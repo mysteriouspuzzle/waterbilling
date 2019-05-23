@@ -31,12 +31,8 @@
                     <li><a href="administrator/rates">View Rates</a></li>
                 </ul>
             </li>
-            <li class="menu-item-has-children dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envelope"></i>SMS</a>
-                <ul class="sub-menu children dropdown-menu">
-                    <li><a href="administrator/smsapi">SMS API</a></li>
-                    <li><a href="administrator/sms">Send SMS</a></li>
-                </ul>
+            <li>
+                <a href="administrator/smsapi"> <i class="menu-icon fa fa-envelope"></i>SMS API</a>
             </li>
         </ul>
     </div><!-- /.navbar-collapse -->
