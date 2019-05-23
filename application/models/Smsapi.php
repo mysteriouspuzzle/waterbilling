@@ -10,19 +10,9 @@ class Smsapi extends CI_Model {
 		if( $this->url_test($endpoint)) {
 			echo "test1";
 			$msg = rawurlencode($msg);
-			// file_get_contents($endpoint.'v1/sms/send/?phone='.$mobile.'&message='.$msg);
 			$api = $endpoint.'v1/sms/send/?phone='.$mobile.'&message='.$msg; 
-			header("Location:$api");
-			?>
-			<script type="text/javascript">
-			// new_popup	();
-			// function new_popup(){
-			// 		var popupwin = window.open($endpoint.'v1/sms/send/?phone='.$mobile.'&message='.$msg,'_blank','width=10,height=1,left=5,top=3');
-			// 		setTimeout(function() { popupwin.close();}, 5000);
-			// }
-			</script>
-			<?php
-					return true;
+			file_get_contents($api);
+			return true;
 		}else {
 			return false;
 		}	
