@@ -167,7 +167,7 @@ class Accounting extends CI_Controller {
 
 	public function notifydiscoconsumers(){
 		$consumers = $this->bills->getUnsentDiscoConsumers();
-		$this->sendEmail($consumers);
+		// $this->sendEmail($consumers);
 		$this->sendSms($consumers);
 		redirect('accounting/disco');
 	}

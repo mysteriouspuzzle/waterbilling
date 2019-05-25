@@ -5,11 +5,22 @@ class Bills extends CI_Model {
 
   public function paidBill($bill_id){
     $data = array(
-      'status' => 'Paid'
+      'status' => 'Paid',
+      'payment_type' => 'walk-in'
     );
     $this->db->where('bill_id', $bill_id)->update('bills', $data);
     return null;
   }
+
+  public function oPaidBill($bill_id){
+    $data = array(
+      'status' => 'Paid',
+      'payment_type' => 'online'
+    );
+    $this->db->where('bill_id', $bill_id)->update('bills', $data);
+    return null;
+  }
+
   public function getBillDetails($bill_id){
     return $this->db->get_where('bills',array('bill_id'=>$bill_id))->row();
   }

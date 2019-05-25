@@ -24,7 +24,7 @@ class Paypal extends CI_Controller {
 		}else{
 			$_SESSION['tempId'] = $id;
 		}
-		$this->bills->paidBill($id);
+		$this->bills->oPaidBill($id);
 		$billDetails = $this->bills->getBillDetails($id);
 		$consumer = $this->consumers->getConsumerDetails($billDetails->consumer_id);
 		$this->sendEmail($consumer, $billDetails);
