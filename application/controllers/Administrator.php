@@ -154,7 +154,10 @@ class Administrator extends CI_Controller {
 		$this->load->view('administrator/sms', $data);
 	}
 	public function addconsumer(){
-		$this->load->view('administrator/addconsumer');
+		$year = date('Y');
+		$acct = $this->consumers->getLatestAccountNumberGenerated();
+		$data['account_number'] = substr($year, 2) . substr($acct->account_number, 2) + 1;
+		$this->load->view('administrator/addconsumer', $data);
 	}
 
 	public function editconsumer($id){
@@ -168,7 +171,7 @@ class Administrator extends CI_Controller {
 		$middlename = $this->input->post('middlename');
 		$lastname = $this->input->post('lastname');
 		// $birthdate = $this->input->post('birthdate');
-		$address = $this->input->post('address');
+		$address = $this->input->post('address') . $this->input->post('address2');;
 		$contact = $this->input->post('contact');
 		$email = $this->input->post('email');
 		$classification = $this->input->post('classification');
@@ -206,7 +209,7 @@ class Administrator extends CI_Controller {
 		$middlename = $this->input->post('middlename');
 		$lastname = $this->input->post('lastname');
 		// $birthdate = $this->input->post('birthdate');
-		$address = $this->input->post('address');
+		$address = $this->input->post('address') . $this->input->post('address2');;
 		$contact = $this->input->post('contact');
 		$email = $this->input->post('email');
 		$classification = $this->input->post('classification');

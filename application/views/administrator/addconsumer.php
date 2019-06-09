@@ -47,7 +47,7 @@
               <div class="card-body card-block">
                 <div class="row form-group">
                   <div class="col col-md-4"><label for="acct_number" class=" form-control-label">Account Number</label></div>
-                  <div class="col-12 col-md-8"><input type="number" id="acct_number" name="acct_number" placeholder="Account Number" class="form-control" required></div>
+                  <div class="col-12 col-md-8"><input type="number" value="<?php echo $account_number ?>" id="acct_number" name="acct_number" placeholder="Account Number" class="form-control" required></div>
                 </div>
                 <div class="row form-group">
                   <div class="col col-md-4"><label for="firstname" class=" form-control-label">First Name</label></div>
@@ -66,8 +66,12 @@
                   <div class="col-12 col-md-8"><input type="date" id="birthdate" format="dd/mm/yyyy" name="birthdate" placeholder="Birthdate" class="form-control datepicker" required></div>
                 </div> -->
                 <div class="row form-group">
-                  <div class="col col-md-4"><label for="address" class=" form-control-label">Address</label></div>
-                  <div class="col-12 col-md-8"><input type="text" id="address" name="address" placeholder="Address" class="form-control text-capitalize" required></div>
+                  <div class="col col-md-4"><label for="address" class=" form-control-label">House #, Street</label></div>
+                  <div class="col-12 col-md-8"><input type="text" id="address" name="address" placeholder="House #, Street" class="form-control text-capitalize" required></div>
+                </div>
+                <div class="row form-group">
+                  <div class="col col-md-4"><label for="address" class=" form-control-label">Barangay, City</label></div>
+                  <div class="col-12 col-md-8"><input type="text" id="address2" name="address2" placeholder="Barangay, City" value=" Cogon, Ormoc City" class="form-control text-capitalize" required></div>
                 </div>
                 <div class="row form-group">
                   <div class="col col-md-4"><label for="contact" class=" form-control-label">Contact Number</label></div>

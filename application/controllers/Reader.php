@@ -172,4 +172,8 @@ class Reader extends CI_Controller {
 		$data['consumer'] = $consumer;
 		$this->load->view('reader/email', $data);
 	}
+
+	public function qrscanner(){
+		$this->load->view('reader/qrscanner');
+	}
 }

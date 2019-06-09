@@ -7,14 +7,23 @@
 
     <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li class="active">
+            <li class="">
                 <a href="reader/"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
             </li>
             <li>
                 <a href="reader/viewconsumers"> <i class="menu-icon fa fa-user"></i>Consumers</a>
             </li>
-            <li>
-                <a href="reader/qrscanner"> <i class="menu-icon fa fa-qrcode"></i>Scan QR</a>
+            <li class="active">
+                <a href="reader/
+                
+                
+                
+                
+                
+                
+                
+                
+                "> <i class="menu-icon fa fa-qrcode"></i>Scan QR</a>
             </li>
         </ul>
     </div><!-- /.navbar-collapse -->

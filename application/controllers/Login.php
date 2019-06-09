@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model('credentials');
 		$this->load->model('codes');
+		$this->load->model('bills');
 		$this->load->view('layout/header');
 		if(isset($_SESSION['wbUserID'])){
 			if($_SESSION['wbUserLevel']=='Teller'){
@@ -18,6 +19,7 @@ class Login extends CI_Controller {
 	}
 	public function index(){
 		$this->load->view('login');
+		$this->notifydueconsumers();
 	}
 	public function login(){
 		$u = $this->input->post('username');
@@ -129,5 +131,11 @@ class Login extends CI_Controller {
 			$this->session->set_flashdata('error', 'Password does not match.');
 			redirect('login/newpass');
 		}
+	}
+
+	function notifydueconsumers(){
+		$consumers = $this->bills->getUnsentDueConsumers();
+		$this->sendDueEmail($consumers);
+		$this->sendDueSms($consumers);
 	}
 }

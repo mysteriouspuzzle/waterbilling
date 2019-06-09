@@ -67,8 +67,12 @@
                   <div class="col-12 col-md-8"><input type="date" id="birthdate" format="dd/mm/yyyy" name="birthdate" placeholder="Birthdate" class="form-control datepicker" required></div>
                 </div> -->
                 <div class="row form-group">
-                  <div class="col col-md-4"><label for="address" class=" form-control-label">Address</label></div>
-                  <div class="col-12 col-md-8"><input type="text" value="<?php echo $consumer->address ?>" id="address" name="address" placeholder="Address" class="form-control text-capitalize" required></div>
+                  <div class="col col-md-4"><label for="address" class=" form-control-label">House #, Street</label></div>
+                  <div class="col-12 col-md-8"><input type="text" value="<?php echo substr($consumer->address, 0,strrpos($consumer->address, ' Cogon, Ormoc City')); ?>" id="address" name="address" placeholder="House #, Street" class="form-control text-capitalize" required></div>
+                </div>
+                <div class="row form-group">
+                  <div class="col col-md-4"><label for="address" class=" form-control-label">Barangay, City</label></div>
+                  <div class="col-12 col-md-8"><input type="text" value=" Cogon, Ormoc City" id="address2" name="address2" placeholder="Barangay, City" value=" Cogon, Ormoc City" class="form-control text-capitalize" required></div>
                 </div>
                 <div class="row form-group">
                   <div class="col col-md-4"><label for="contact" class=" form-control-label">Contact Number</label></div>

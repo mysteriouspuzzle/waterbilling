@@ -21,4 +21,8 @@ class Consumers extends CI_Model {
 		$this->db->where('id', $id)->update('consumers', $data);
 		return null;
 	}
+
+	public function getLatestAccountNumberGenerated(){
+		return $this->db->order_by('account_number', 'desc')->get('consumers')->row();
+	}
 }
