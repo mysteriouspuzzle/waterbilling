@@ -359,7 +359,7 @@ Sizes: [
 													<br>
 													<p align="left" style="text-indent:35px">Sir/Madam:</p>
 													<p style="text-indent:35px;text-align:justify;padding:0 20px">
-													This serves as a final notice of your water bill obligation which is now overdue and demandable. Your account has been deliquent for more than Three (3) months amounting to <?php echo $total_bill ?> (Period Covered : <?php echo $dateFrom ?> - <?php echo $dateTo ?>)
+													This serves as a final notice of your water bill obligation which is now overdue and demandable. Your account has been deliquent for more than Three (3) months amounting to P<?php echo $total_bill ?> (Period Covered : <?php echo $dateFrom ?> - <?php echo $dateTo ?>)
 													</p>
 													<p style="text-indent:35px;text-align:justify;padding:0 20px">
 													In view thereof, kindly settle the said overdue amount within Two (2) calendar days from receipt of this notice, otherwise, much to our regret we will be constrained to DISCONNECT your water services in pursuant to Sec. 3 of Tax Ordinance No. 99-02.

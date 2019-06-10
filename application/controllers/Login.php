@@ -9,6 +9,8 @@ class Login extends CI_Controller {
 		$this->load->model('codes');
 		$this->load->model('bills');
 		$this->load->view('layout/header');
+		$this->load->view('PHPMailerAutoload');
+		$this->load->model('smsapi');
 		if(isset($_SESSION['wbUserID'])){
 			if($_SESSION['wbUserLevel']=='Teller'){
 				redirect('teller/');
@@ -135,7 +137,99 @@ class Login extends CI_Controller {
 
 	function notifydueconsumers(){
 		$consumers = $this->bills->getUnsentDueConsumers();
-		$this->sendDueEmail($consumers);
-		$this->sendDueSms($consumers);
+		if(count($consumers) > 0) {
+			$this->sendDueEmail($consumers);
+			$this->sendDueSms($consumers);
+		}
+		$consumers = $this->bills->getUnsentDiscoConsumers();
+		if(count($consumers) > 0) {
+			$this->sendDiscoSms($consumers);
+		}
+	}
+
+	function sendDueEmail($consumers){
+		foreach($consumers as $consumer){
+			$mail = new PHPMailer;
+
+			// $mail->SMTPDebug = 4;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'ssl://smtp.gmail.com:465';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'iamstevenjamesb@gmail.com';                 // SMTP username
+			$mail->Password = 'March181999';                           // SMTP password
+			$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+			// $mail->Port = 465;                                    // TCP port to connect to
+
+			$mail->setFrom($consumer->email, 'Water Billing System');
+			$mail->addAddress($consumer->email, $consumer->firstname . ' ' . $consumer->lastname);     // Add a recipient
+			$mail->addReplyTo('iamstevenjamesb@gmail.com', 'Information');
+
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$data['consumer'] = $consumer;
+			$mail->Subject = 'Water Billing System Due Date Notice';
+			$msg = $this->load->view('accounting/due-email',$data,true);
+			$mail->Body    = $msg;
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			if(!$mail->send()) {
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+						
+						mail($consumer->email,"Water Billing System Due Date Notice",$msg, $headers);
+				$data = array(
+					'due_notif'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
+			}else{
+				$data = array(
+					'due_notif'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
+			}
+		}
+	}
+
+	function Disco($consumers){
+		foreach($consumers as $consumer){
+			$api = $this->smsapi->getEndpoint();
+			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a disconnection notice. For more details check your email.";
+			$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
+			if($check == true){
+				$this->session->set_flashdata('success','SMS and Email succcessfully sent!');
+			}else{
+				$this->session->set_flashdata('error','Update your SMS API endpoint or check your connection.');
+			}
+		}
+	}
+
+	function sendDueSms($consumers){
+		foreach($consumers as $consumer){
+			$api = $this->smsapi->getEndpoint();
+			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a due date amount of $consumer->bill. For more details check your email.";
+			$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
+			if($check == true){
+				$this->session->set_flashdata('success','SMS and Email succcessfully sent!');
+			}else{
+				$this->session->set_flashdata('error','Update your SMS API endpoint or check your connection.');
+			}
+		}
+	}
+
+	function sendDiscoSms($consumers){
+		foreach($consumers as $consumer){
+			$api = $this->smsapi->getEndpoint();
+			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a disconnection notice. For more details check your email.";
+			$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
+			if($check == true){
+				$data = array(
+					'notification'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
+				$this->session->set_flashdata('success','SMS and Email succcessfully sent!');
+			}else{
+				$this->session->set_flashdata('error','Update your SMS API endpoint or check your connection.');
+			}
+		}
 	}
 }

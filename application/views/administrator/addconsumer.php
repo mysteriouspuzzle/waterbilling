@@ -36,8 +36,13 @@
                <a href="#" class="close" data-dismiss="alert">&times;</a>
                <span class="ti ti-check"></span> <?php echo $this->session->flashdata('success'); ?>
            </div>
+          <div class="qrcode">
+            <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=/waterbilling/reader/readmeter/<?php echo $this->session->flashdata('in') ?>&choe=UTF-8" alt="">
+          </div>
+          <button onclick="jQuery('.qrcode').print()" id="printqr" class="btn btn-primary"><span class="fa fa-print"></span> Print</button>
           <?php } ?>
-        </div>
+          
+        </div>s
         <div class="col-lg-8">
           <form action="administrator/storeconsumer" method="post" class="form-horizontal">
             <div class="card">
@@ -130,6 +135,7 @@
   </div>
 <script type="text/javascript" src="assets/js/vendor/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/validator.min.js"></script>
+<script type="text/javascript" src="assets/js/print.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $('#modal1').click(function(){
@@ -138,6 +144,9 @@
     $( ".datepicker" ).datepicker({
       maxDate: 0,
       dateFormat: 'yy-mm-dd'
+    });
+    $("#printqr").find('button').on('click', function() {
+      $(".qrcode").print();
     });
   })
 </script>

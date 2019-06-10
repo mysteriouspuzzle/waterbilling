@@ -197,8 +197,9 @@ class Administrator extends CI_Controller {
 			'payment'=>0,
 			'status'=>0
 		);
-		$this->reading->saveTransaction($data);
+		$id = $this->reading->saveTransaction($data);
 		$this->session->set_flashdata('success','Consumer succcessfully saved.');
+		$this->session->set_flashdata('in',$id);
 		redirect('administrator/addconsumer');
 	}
 

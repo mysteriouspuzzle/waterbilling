@@ -413,7 +413,7 @@ Sizes: [
 												<table border="0" cellpadding="30" cellspacing="0" width="500" class="flexibleContainer">
 													<tr>
 														<td align="left" class="textContent">
-															<h3><div style="text-align:center;font-family:Lucida Console,sans-serif;font-size:15px; font-weight:bold;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-top:9px;">TOTAL AMOUNT DUE: <?php echo $details->bill ?></div></h3>
+															<h3><div style="text-align:center;font-family:Lucida Console,sans-serif;font-size:15px; font-weight:bold;margin-bottom:0;color:#5F5F5F;line-height:135%;margin-top:9px;">TOTAL AMOUNT DUE: P<?php echo $details->bill ?></div></h3>
 														</td>
 													</tr>
 													<tr><td><div style="border-bottom:1px dashed gray;border-top:1px dashed gray;height: 5px;"></div></td></tr>

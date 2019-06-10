@@ -35,8 +35,18 @@ class Accounting extends CI_Controller {
 	}
 
 	public function sales(){
-		$data['sales'] = $this->db->query("select c.account_number, c.firstname, c.lastname, c.classification, b.bill, b.payment_type, b.payment_date, b.status from consumers c, bills b where c.id = b.consumer_id order by bill_id desc")->result();
+		$data['sales'] = $this->db->query("select c.account_number, c.firstname, c.lastname, c.classification, b.bill, b.payment_type, b.payment_date, b.status from consumers c, bills b where c.id = b.consumer_id and b.payment_type != '' order by bill_id desc")->result();
 		$this->load->view('accounting/sales', $data);
+	}
+
+	public function walkinsales(){
+		$data['sales'] = $this->db->query("select c.account_number, c.firstname, c.lastname, c.classification, b.bill, b.payment_type, b.payment_date, b.status from consumers c, bills b where c.id = b.consumer_id and b.payment_type = 'walk-in' order by bill_id desc")->result();
+		$this->load->view('accounting/walk-in-sales', $data);
+	}
+
+	public function onlinesales(){
+		$data['sales'] = $this->db->query("select c.account_number, c.firstname, c.lastname, c.classification, b.bill, b.payment_type, b.payment_date, b.status from consumers c, bills b where c.id = b.consumer_id and b.payment_type = 'online' order by bill_id desc")->result();
+		$this->load->view('accounting/online-sales', $data);
 	}
 
 	function sendEmail($consumers){
@@ -145,6 +155,10 @@ class Accounting extends CI_Controller {
 			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a disconnection notice. For more details check your email.";
 			$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
 			if($check == true){
+				$data = array(
+					'notification'=>'Sent'
+				);
+				$this->bills->updateBillDetails($consumer->bill_id, $data);
 				$this->session->set_flashdata('success','SMS and Email succcessfully sent!');
 			}else{
 				$this->session->set_flashdata('error','Update your SMS API endpoint or check your connection.');
@@ -154,8 +168,8 @@ class Accounting extends CI_Controller {
 
 	function sendDueSms($consumers){
 		foreach($consumers as $consumer){
-			$api = $this->smsapi->getEndpoint();
-			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a due date amount of $consumer->bill. For more details check your email.";
+			$api = $this->smsapi->getEndpoint();	
+			$msg = "Hi $consumer->firstname $consumer->lastname, this is Ormoc Waterworks Water Billing. Your account number $consumer->account_number has a due date amount of P$consumer->bill. For more details check your email.";
 			$check = $this->smsapi->sendSms($api->endpoint, $consumer->contactNumber, $msg);
 			if($check == true){
 				$this->session->set_flashdata('success','SMS and Email succcessfully sent!');

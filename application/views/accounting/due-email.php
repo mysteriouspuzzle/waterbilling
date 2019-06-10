@@ -359,7 +359,7 @@ Sizes: [
 													<br>
 													<p align="left" style="text-indent:35px">Sir/Madam:</p>
 													<p style="text-indent:35px;text-align:justify;padding:0 20px">
-													This serves as a notice of your water bill obligation which is now overdue and demandable. Your account has been deliquent for more than 15 days amounting to <?php echo $consumer->bill ?> (Period Covered : <?php echo $consumer->previous_date ?> - <?php echo $consumer->present_date ?>)
+													This serves as a notice of your water bill obligation which is now overdue and demandable. Your account has been deliquent for more than 15 days amounting to P<?php echo $consumer->bill ?> (Period Covered : <?php echo $consumer->previous_date ?> - <?php echo $consumer->present_date ?>)
 													</p>
 													<p style="text-indent:35px;text-align:justify;padding:0 20px">
 													In view thereof, kindly settle the said overdue ASAP. 
