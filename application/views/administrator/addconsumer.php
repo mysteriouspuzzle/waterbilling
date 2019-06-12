@@ -42,7 +42,7 @@
           <button onclick="jQuery('.qrcode').print()" id="printqr" class="btn btn-primary"><span class="fa fa-print"></span> Print</button>
           <?php } ?>
           
-        </div>s
+        </div>
         <div class="col-lg-8">
           <form action="administrator/storeconsumer" method="post" class="form-horizontal">
             <div class="card">
@@ -70,9 +70,53 @@
                   <div class="col col-md-4"><label for="birthdate" class=" form-control-label">Birthdate</label></div>
                   <div class="col-12 col-md-8"><input type="date" id="birthdate" format="dd/mm/yyyy" name="birthdate" placeholder="Birthdate" class="form-control datepicker" required></div>
                 </div> -->
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                   <div class="col col-md-4"><label for="address" class=" form-control-label">House #, Street</label></div>
                   <div class="col-12 col-md-8"><input type="text" id="address" name="address" placeholder="House #, Street" class="form-control text-capitalize" required></div>
+                </div> -->
+                <div class="row form-group">
+                  <div class="col col-md-4"><label for="hf-classification" class=" form-control-label">Street</label></div>
+                  <div class="col-12 col-md-8">
+                    <select class="form-control" name="address" required>
+                      <option value="">Select Street</option>
+                      <option value="Acasia">Acasia</option>
+                      <option value="Alupang St.">Alupang St.</option>
+                      <option value="Aquino">Aquino</option>
+                      <option value="Aranga St.">Aranga St.</option>
+                      <option value="Aunubing St.">Aunubing St.</option>
+                      <option value="Aviles Village">Aviles Village</option>
+                      <option value="Bilwang St.">Bilwang St.</option>
+                      <option value="Bansalaguin St.">Bansalaguin St.</option>
+                      <option value="Banuyo St.">Banuyo St.</option>
+                      <option value="Batitingan">Batitingan</option>
+                      <option value="Bayong St.">Bayong St.</option>
+                      <option value="BFP">BFP</option>
+                      <option value="Bolongeta">Bolongeta</option>
+                      <option value="Bungawong">Bungawong</option>
+                      <option value="Calamansanoy">Calamansanoy</option>
+                      <option value="Capahis Residence">Capahis Residence</option>
+                      <option value="City Engineering Office">City Engineering Office</option>
+                      <option value="DC. Marsons Residence">DC. Marsons Residence</option>
+                      <option value="Fautino Ablen">Fautino Ablen</option>
+                      <option value="Gillamacs Marketing">Gillamacs Marketing</option>
+                      <option value="Lilia Avenue">Lilia Avenue</option>
+                      <option value="Matio Tans Residence">Matio Tans Residence</option>
+                      <option value="Ormoc Distric Hospital">Ormoc Distric Hospital</option>
+                      <option value="Purok Chrysanthemum">Purok Chrysanthemum</option>
+                      <option value="Purok Dama de Noche">Purok Dama de Noche</option>
+                      <option value="Purok Ilang-ilang 1">Purok Ilang-ilang 1</option>
+                      <option value="Purok Ilang-ilang 2">Purok Ilang-ilang 2</option>
+                      <option value="Purok Jasmin">Purok Jasmin</option>
+                      <option value="Purok Rosal">Purok Rosal</option>
+                      <option value="Purok Sampaguita">Purok Sampaguita</option>
+                      <option value="Purok Dalhia">Purok Dalhia</option>
+                      <option value="Tennis Court">Tennis Court</option>
+                      <option value="Toni Con-uis Residence">Toni Con-uis Residence</option>
+                      <option value="Tony Codillas Residence">Tony Codillas Residence</option>
+                      <option value="Tugonons Residence">Tugonons Residence</option>
+                      <option value="Wennie Codilla Residence">Wennie Codilla Residence</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="row form-group">
                   <div class="col col-md-4"><label for="address" class=" form-control-label">Barangay, City</label></div>
