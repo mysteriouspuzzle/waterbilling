@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2019 at 05:55 PM
+-- Generation Time: Jun 16, 2019 at 06:21 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -64,9 +64,9 @@ INSERT INTO `bills` (`bill_id`, `consumer_id`, `previous_date`, `present_date`, 
 (13, 3, '2019-04-27', '2019-04-27', '0072', '73', 1, 35.00, '2019-05-01', '2019-05-11', 'Paid', 'online', '2019-05-03', 'Unsent', 'Unsent'),
 (15, 2, '2019-02-01', '2019-05-01', '0000', '25', 25, 94.75, '2019-05-01', '2019-05-15', 'Paid', 'walk-in', '2019-05-05', 'Unsent', 'Unsent'),
 (16, 4, '2018-12-15', '2019-01-15', '0000', '23', 23, 86.25, '0000-00-00', '2019-02-01', 'Unpaid', '', '0000-00-00', 'Unsent', 'Sent'),
-(17, 4, '2019-05-04', '2019-05-04', '0000', '23', 23, 86.25, '0000-00-00', '2019-05-18', 'Unpaid', '', '0000-00-00', 'Unsent', 'Unsent'),
+(17, 4, '2019-05-04', '2019-05-04', '0000', '23', 23, 86.25, '0000-00-00', '2019-05-18', 'Unpaid', '', '0000-00-00', 'Unsent', 'Sent'),
 (18, 8, '2019-03-20', '2019-05-06', '0000', '44', 44, 182.90, '0000-00-00', '2019-04-15', 'Unpaid', '', '0000-00-00', 'Unsent', 'Sent'),
-(19, 3, '2019-03-27', '2019-04-10', '0073', '80', 7, 35.00, '0000-00-00', '2019-04-24', 'Unpaid', '', '0000-00-00', 'Unsent', 'Sent');
+(19, 3, '2019-03-27', '2019-04-10', '0073', '80', 7, 35.00, '0000-00-00', '2019-04-24', 'Paid', '', '0000-00-00', 'Unsent', 'Sent');
 
 -- --------------------------------------------------------
 
@@ -111,19 +111,24 @@ CREATE TABLE `consumers` (
   `classification` varchar(15) NOT NULL,
   `password` varchar(100) NOT NULL,
   `online` tinyint(1) NOT NULL,
-  `date_added` date NOT NULL
+  `date_added` date NOT NULL,
+  `is_disconnected` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `consumers`
 --
 
-INSERT INTO `consumers` (`id`, `account_number`, `firstname`, `middlename`, `lastname`, `birthdate`, `address`, `contactNumber`, `email`, `classification`, `password`, `online`, `date_added`) VALUES
-(1, 190001, 'Makisig', '', 'Gerero', '2009-03-04', 'Lacion City', '09342324255', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '2019-05-03'),
-(2, 190002, 'Jake Joseph', 'Malinao', 'Lingatong', '2018-10-22', 'Bogo', '09328478343', 'mysterious.puzzle16@gmail.com', 'Residential', 'cc03e747a6afbbcbf8be7668acfebee5', 1, '2019-04-01'),
-(3, 190003, 'Apple', 'Orange', 'Lala', '2019-03-18', 'Sitio Pikas', '09097895572', 'mysterious.puzzle15@gmail.com', 'Residential', 'cc03e747a6afbbcbf8be7668acfebee5', 1, '0000-00-00'),
-(4, 190004, 'Mike', 'Excusemepo', 'Enriquez', '2017-08-15', 'San Vicente, Ormoc City', '0945521986', 'iamstevenjamesb@gmail.com', 'Residential', '', 0, '0000-00-00'),
-(8, 190005, 'Marlou', '', 'Arizola', '1990-01-01', 'Mandaue, Cebu', '09123846723', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '2019-05-01');
+INSERT INTO `consumers` (`id`, `account_number`, `firstname`, `middlename`, `lastname`, `birthdate`, `address`, `contactNumber`, `email`, `classification`, `password`, `online`, `date_added`, `is_disconnected`) VALUES
+(1, 190001, 'Makisig', '', 'Gerero', '2009-03-04', 'Coogn Cogon, Ormoc City', '09342324255', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '2019-06-10', 0),
+(2, 190002, 'Jake Joseph', 'Malinao', 'Lingatong', '2018-10-22', 'Bogo', '09328478343', 'mysterious.puzzle16@gmail.com', 'Residential', 'cc03e747a6afbbcbf8be7668acfebee5', 1, '2019-04-01', 0),
+(3, 190003, 'Apple', 'Orange', 'Lala', '2019-03-18', 'Sitio Pikas', '09097895572', 'mysterious.puzzle15@gmail.com', 'Residential', 'cc03e747a6afbbcbf8be7668acfebee5', 1, '0000-00-00', 0),
+(4, 190004, 'Mike', 'Excusemepo', 'Enriquez', '2017-08-15', 'San Vicente, Ormoc City', '0945521986', 'iamstevenjamesb@gmail.com', 'Residential', '', 0, '0000-00-00', 0),
+(8, 190005, 'Marlou', '', 'Arizola', '1990-01-01', 'Mandaue, Cebu', '09123846723', 'mysterious.puzzle15@gmail.com', 'Residential', '', 0, '2019-05-01', 0),
+(9, 190006, 'Katrina', '', 'Halili', '0000-00-00', '23, Basak Cogon, Ormoc City', '09234784638', 'asd@a.com', 'Residential', '', 0, '2019-06-11', 0),
+(10, 190007, 'Xander', '', 'Ford', '0000-00-00', '55 Cogon, Ormoc City', '09091823636', 'x@f.com', 'Residential', '', 0, '2019-06-11', 0),
+(11, 190008, 'Sando', '', 'Gaming', '0000-00-00', '48 Cogon, Ormoc City', '09234242344', 'ads@fadsf.com', 'Residential', '', 0, '2019-06-11', 0),
+(12, 190009, 'Layla', '', 'De Lima', '0000-00-00', '49, San Diego Cogon, Ormoc City', '0948827384', 'fa@lsdf.com', 'Residential', '', 0, '2019-06-11', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +246,11 @@ INSERT INTO `reading` (`id`, `consumer_id`, `previous_read`, `next_read`, `rate`
 (2, 1, '', '0000', 0, '2019-03-01', 0, 0),
 (3, 3, '', '0000', 0, '2019-03-30', 0, 0),
 (4, 4, '', '0000', 0, '2019-03-30', 0, 0),
-(5, 8, '', '0000', 0, '2019-05-01', 0, 0);
+(5, 8, '', '0000', 0, '2019-05-01', 0, 0),
+(6, 9, '', '0000', 0, '2019-06-11', 0, 0),
+(7, 10, '', '0000', 0, '2019-06-11', 0, 0),
+(8, 11, '', '0000', 0, '2019-06-11', 0, 0),
+(9, 12, '', '0000', 0, '2019-06-11', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -259,7 +268,7 @@ CREATE TABLE `sms_api` (
 --
 
 INSERT INTO `sms_api` (`id`, `endpoint`) VALUES
-(1, 'http://192.168.1.7:8080/');
+(1, 'http://192.168.1.8:8080/');
 
 -- --------------------------------------------------------
 
@@ -365,7 +374,7 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT for table `consumers`
 --
 ALTER TABLE `consumers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `consumer_logs`
 --
@@ -390,7 +399,7 @@ ALTER TABLE `rates`
 -- AUTO_INCREMENT for table `reading`
 --
 ALTER TABLE `reading`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `sms_api`
 --
