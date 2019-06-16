@@ -21,10 +21,10 @@
             <li>
                 <a href="accounting/due"> <i class="menu-icon fa fa-calendar"></i>Due Date</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="accounting/disco"> <i class="menu-icon fa fa-unlink"></i>Disconnection</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="accounting/recon"> <i class="menu-icon fa fa-link"></i>Reconnection</a>
             </li>
         </ul>

@@ -29,6 +29,11 @@ class Accounting extends CI_Controller {
 		$this->load->view('accounting/disconnection', $data);
 	}
 
+	public function recon(){
+		$data['disco'] = $this->bills->getDisconnectedConsumers();
+		$this->load->view('accounting/reconnection', $data);
+	}
+
 	public function due(){
 		$data['due'] = $this->bills->getDueConsumers();
 		$this->load->view('accounting/duedate', $data);
@@ -191,5 +196,15 @@ class Accounting extends CI_Controller {
 		$this->sendDueEmail($consumers);
 		$this->sendDueSms($consumers);
 		redirect('accounting/due');
+	}
+
+	public function disconnect($id) {
+		$this->db->query("update consumers set is_disconnected = '1' where id = $id");
+		redirect('accounting/disco');
+	}
+
+	public function reconnect($id) {
+		$this->db->query("update consumers set is_disconnected = '0' where id = $id");
+		redirect('accounting/recon');
 	}
 }

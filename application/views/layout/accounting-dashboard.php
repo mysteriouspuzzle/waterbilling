@@ -24,6 +24,9 @@
             <li>
                 <a href="accounting/disco"> <i class="menu-icon fa fa-unlink"></i>Disconnection</a>
             </li>
+            <li>
+                <a href="accounting/recon"> <i class="menu-icon fa fa-link"></i>Reconnection</a>
+            </li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>

@@ -2,7 +2,7 @@
 <?php $this->load->view('layout/header'); ?>
 <body>
 
-    <?php $this->load->view('layout/accounting-disco'); ?>
+    <?php $this->load->view('layout/accounting-recon'); ?>
 
     <!-- Right Panel -->
 
@@ -50,8 +50,7 @@
                       <th>Address</th>
                       <th>Contact Number</th>
                       <th>Disconnection Date</th>
-                      <th>Notification</th>
-                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -60,27 +59,10 @@
                         <td><?php echo $dc->firstname. ' ' .$dc->lastname ?></td>
                         <td><?php echo $dc->address ?></td>
                         <td><?php echo $dc->contactNumber ?></td>
-                        <td><?php 
-                          if(strtotime(date('Y-m-d', strtotime($dc->due_date))." +3 month") < date('Y-m-d')) {
-                            ?><span class="text-info"><?php echo date('F d, Y',strtotime(date('Y-m-d', strtotime($dc->due_date))." +3 month"))  ?></span><?php
-                          }else{
-                            ?><span class="text-danger"><?php echo date('F d, Y',strtotime(date('Y-m-d', strtotime($dc->due_date))." +3 month"))  ?></span><?php
-                          }
-                        ?></td>
-                        <td><?php 
-                            if($dc->notification == 'Sent'){
-                                ?><span class="text-info"><?php echo $dc->notification ?></span><?php
-                            }else{
-                                ?><span class="text-danger"><?php echo $dc->notification ?></span><?php
-                            }
-                        ?></td>
-                        <td><?php
-                          if($dc->is_disconnected == 0){
-                              ?><a href="accounting/disconnect/<?php echo $dc->id ?>" class="btn btn-danger"><span class="ti ti-unlink"></span> Disconnect</a><?php
-                          }else{
-                              ?><span class="text-danger">Disconnected</span><?php
-                          }
-                        ?></td>
+                        <td><?php echo date('F d, Y',strtotime(date('Y-m-d', strtotime($dc->due_date))." +3 month")) ?></td>
+                        <td>
+                          <a href="accounting/reconnect/<?php echo $dc->id ?>" class="btn btn-danger"><span class="ti ti-link"></span> Reconnect</a>
+                        </td>
                     </tr>
                   <?php } ?>
                   </tbody>

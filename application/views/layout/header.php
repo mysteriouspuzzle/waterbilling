@@ -10,7 +10,7 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="<?php echo base_url()?>"></base>
-    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="icon" href="assets/img/logo3.png">
 
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">

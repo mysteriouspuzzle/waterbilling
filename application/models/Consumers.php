@@ -5,6 +5,10 @@ class Consumers extends CI_Model {
 
 	public function getAllConsumers(){
     return $this->db->get('consumers')->result();
+	}
+	
+	public function getAllConnectedConsumers(){
+    return $this->db->where('is_disconnected', 0)->get('consumers')->result();
   }
 
   public function storeConsumer($data){

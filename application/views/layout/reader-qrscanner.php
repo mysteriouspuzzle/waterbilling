@@ -14,16 +14,7 @@
                 <a href="reader/viewconsumers"> <i class="menu-icon fa fa-user"></i>Consumers</a>
             </li>
             <li class="active">
-                <a href="reader/
-                
-                
-                
-                
-                
-                
-                
-                
-                "> <i class="menu-icon fa fa-qrcode"></i>Scan QR</a>
+                <a href="reader/qrscanner"> <i class="menu-icon fa fa-qrcode"></i>Scan QR</a>
             </li>
         </ul>
     </div><!-- /.navbar-collapse -->

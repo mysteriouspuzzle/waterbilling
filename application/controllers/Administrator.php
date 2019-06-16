@@ -186,6 +186,7 @@ class Administrator extends CI_Controller {
 			'email'=>$email,
 			'classification'=>$classification,
 			'date_added'=>date('Y-m-d'),
+			'is_disconnected'=>0
 		);
 		$consumer_id = $this->consumers->storeConsumer($data);
 		$data = array(

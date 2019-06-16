@@ -23,7 +23,7 @@ class Reader extends CI_Controller {
 		redirect('./');
 	}
 	public function viewconsumers(){
-		$data['consumers'] = $this->consumers->getAllConsumers();
+		$data['consumers'] = $this->consumers->getAllConnectedConsumers();
 		$this->load->view('reader/viewconsumers', $data);
 	}
 	public function readmeter($consumer_id){
