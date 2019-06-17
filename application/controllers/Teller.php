@@ -23,8 +23,14 @@ class Teller extends CI_Controller {
 	}
 
 	public function viewconsumers(){
-		$data['consumers'] = $this->consumers->getAllConsumers();
-		$this->load->view('teller/viewconsumers', $data);
+		if(isset($_GET['search'])){
+			$search = $_GET['search'];
+			// $data['consumers'] = $this->consumers->getAllConsumers();
+			$data['consumers'] = $this->consumers->searchConsumers($search);
+			$this->load->view('teller/viewconsumers', $data);
+		}else{
+			$this->load->view('teller/viewconsumers');
+		}
 	}
 
 	public function records($id){

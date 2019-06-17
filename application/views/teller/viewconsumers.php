@@ -15,7 +15,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>View Consumers</h1>
+                        <h1>Search Consumers</h1>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                           <li><a href="administrator/">Dashboard</a></li>
-                          <li class="active">View Consumers</li>
+                          <li class="active">Search Consumers</li>
                         </ol>
                     </div>
                 </div>
@@ -39,8 +39,21 @@
           <?php } ?>
         </div>
         <div class="col-lg-12">
-            <div class="card">
-              <div class="card-body card-block">
+          <div class="card">
+            <div class="card-body card-block">
+              <div class="row">
+                <form action="teller/viewconsumers" method="get">
+                  <div class="col-md-9">
+                    <input type="search" class="form-control" name="search" placeholder="Search by consumer or account number" autofocus>
+                  </div>
+                  <div class="col-md-1">
+                    <input type="submit" class="btn btn-primary" value="Search">
+                  </div>
+                </form><br><br>
+              </div>
+              <?php
+              if(isset($consumers)){ ?>
+              <div class="row">
                 <table class="table table-bordered" id="bootstrap-data-table">
                   <thead>
                     <tr>
@@ -67,8 +80,16 @@
                   </tbody>
                 </table>
               </div>
+              <?php } ?>
             </div>
+          </div>
         </div>
+        <!-- <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body card-block">
+            </div>
+          </div>
+        </div> -->
 
       </div> <!-- .content -->
     </div><!-- /#right-panel -->

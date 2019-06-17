@@ -39,36 +39,51 @@
           <?php } ?>
         </div>
         <div class="col-lg-12">
-            <div class="card">
-              <div class="card-body card-block table-responsive">
-                <table class="table table-bordered" id="bootstrap-data-table">
-                  <thead>
-                    <tr>
-                        <th>Account Number</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <!-- <th>Contact Number</th> -->
-                        <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($consumers as $consumer) { ?>
-                    <tr>
-                        <td><?php echo $consumer->account_number ?></td>
-                        <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
-                        <td><?php echo $consumer->address ?></td>
-                        <!-- <td><?php //echo $consumer->contactNumber ?></td> -->
-                        <td>
-                        <!-- <a href="reader/consumerhistory?id=<?php echo $consumer->id ?>" class="btn btn-primary">History</a> -->
-                        <a href="reader/readmeter/<?php echo $consumer->id ?>" class="btn btn-success">Read Meter</a>
-                        <!-- <a href="teller/consumercargo?id=<?php echo $consumer->id ?>" class="btn btn-success">Cargo</a> -->
-                        </td>
-                    </tr>
-                  <?php } ?>
-                  </tbody>
-                </table>
+          <div class="card">
+            <div class="card-body card-block">
+              <div class="row">
+                <form action="reader/viewconsumers" method="get">
+                  <div class="col-md-9">
+                    <input type="search" class="form-control" name="search" placeholder="Search by consumer or account number" autofocus>
+                  </div>
+                  <div class="col-md-1">
+                    <input type="submit" class="btn btn-primary" value="Search">
+                  </div>
+                </form><br><br>
               </div>
+              <?php
+              if(isset($consumers)){ ?>
+                <div class="row">
+                  <table class="table table-bordered" id="bootstrap-data-table">
+                    <thead>
+                      <tr>
+                          <th>Account Number</th>
+                          <th>Name</th>
+                          <th>Address</th>
+                          <!-- <th>Contact Number</th> -->
+                          <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach($consumers as $consumer) { ?>
+                      <tr>
+                          <td><?php echo $consumer->account_number ?></td>
+                          <td><?php echo $consumer->firstname. ' ' .$consumer->lastname ?></td>
+                          <td><?php echo $consumer->address ?></td>
+                          <!-- <td><?php //echo $consumer->contactNumber ?></td> -->
+                          <td>
+                          <!-- <a href="reader/consumerhistory?id=<?php echo $consumer->id ?>" class="btn btn-primary">History</a> -->
+                          <a href="reader/readmeter/<?php echo $consumer->id ?>" class="btn btn-success">Read Meter</a>
+                          <!-- <a href="teller/consumercargo?id=<?php echo $consumer->id ?>" class="btn btn-success">Cargo</a> -->
+                          </td>
+                      </tr>
+                    <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+                <?php } ?>
             </div>
+          </div>
         </div>
 
       </div> <!-- .content -->
