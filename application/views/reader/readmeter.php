@@ -45,6 +45,9 @@
            </div>
           <?php } ?>
         </div>
+        <?php
+        if( date("Y-m-d", strtotime("+1 month", strtotime($prev_meter_date))) <= date('Y-m-d') ){
+        ?>
         <div class="col-lg-3 col-sm-12">
             <div class="card">
                 <div class="card-body card-block">
@@ -141,6 +144,14 @@
                 </div>
             </form>
         </div>
+        <?php }else{ ?>
+            <div class="col-lg-12 col-sm-12">
+                <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <span class="ti ti-info"></span> Already readed for this month!
+            </div>
+            </div>
+        <?php } ?>
 
       </div> <!-- .content -->
     </div><!-- /#right-panel -->

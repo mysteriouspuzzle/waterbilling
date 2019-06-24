@@ -42,6 +42,7 @@ class Reader extends CI_Controller {
 			// $count = $this->bills->countPreviousMeterReading($consumer_id);
 			$result = $this->bills->getPreviousMeterReading($consumer_id);
 			$data['prev_meter'] = str_pad($result->present_meter, 4, '0', STR_PAD_LEFT);
+			$data['prev_meter_date'] = $result->present_date;
 		}	
 		$data['consumer'] = $this->consumers->getConsumerDetails($consumer_id);
 		$diff = $data['current_meter'] - $data['prev_meter'];

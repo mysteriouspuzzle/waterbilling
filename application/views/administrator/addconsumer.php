@@ -40,7 +40,10 @@
             <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=/waterbilling/reader/readmeter/<?php echo $this->session->flashdata('in') ?>&choe=UTF-8" alt="">
           </div>
           <button onclick="jQuery('.qrcode').print()" id="printqr" class="btn btn-primary"><span class="fa fa-print"></span> Print</button>
-          <?php } ?>
+          <?php 
+          
+          } 
+          ?>
           
         </div>
         <div class="col-lg-8">
