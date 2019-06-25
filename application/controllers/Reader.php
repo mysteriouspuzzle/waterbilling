@@ -37,11 +37,11 @@ class Reader extends CI_Controller {
 		$data['current_meter'] = $this->input->post('current_meter');
 		$count_prev_meter = $this->bills->countPreviousMeterReading($consumer_id);
 		if($count_prev_meter == 0) {
-			$data['prev_meter'] = "0000";
+			$data['prev_meter'] = "000000";
 		}else{
 			// $count = $this->bills->countPreviousMeterReading($consumer_id);
 			$result = $this->bills->getPreviousMeterReading($consumer_id);
-			$data['prev_meter'] = str_pad($result->present_meter, 4, '0', STR_PAD_LEFT);
+			$data['prev_meter'] = str_pad($result->present_meter, 6, '0', STR_PAD_LEFT);
 			$data['prev_meter_date'] = $result->present_date;
 		}	
 		$data['consumer'] = $this->consumers->getConsumerDetails($consumer_id);

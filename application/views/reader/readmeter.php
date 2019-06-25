@@ -46,7 +46,7 @@
           <?php } ?>
         </div>
         <?php
-        if( date("Y-m-d", strtotime("+1 month", strtotime($prev_meter_date))) <= date('Y-m-d') ){
+        if( date("Y-m-d", strtotime("+1 month", strtotime(isset($prev_meter_date)))) <= date('Y-m-d') && $prev_meter == 0 ){
         ?>
         <div class="col-lg-3 col-sm-12">
             <div class="card">
@@ -57,7 +57,7 @@
                             <div style="word-spacing: 15px" class="">
                                 <?php 
                             if($prev_meter == 0) { ?>
-                                <input type="text" value="0000" style="text-align:right" class="form-control" readonly> <?php
+                                <input type="text" value="000000" style="text-align:right" class="form-control" readonly> <?php
                             }else{ ?>
                                 <input type="text" value="<?php echo $prev_meter ?>" style="text-align:right" class="form-control" readonly> <?php
                             } ?>
@@ -66,7 +66,7 @@
                     <div>
                         <label for="">Current Reading</label>
                         <div style="word-spacing: 15px" class="">
-                            <input type="text" style="text-align:right" maxlength="4" class="form-control" name="current_meter" required autofocus>
+                            <input type="text" style="text-align:right" maxlength="6" class="form-control" name="current_meter" required autofocus>
                         </div>
                     </div><br/>
                     <div>
@@ -102,7 +102,7 @@
                                 if($current_meter == '' or ($current_meter-$prev_meter)<0){
                                     ?> No current reading yet. <?php
                                 }else{
-                                    echo sprintf("%04d", $current_meter); ?>
+                                    echo sprintf("%06d", $current_meter); ?>
                                     <input type="hidden" name="current_meter" value="<?php echo $current_meter ?>"> <?php
                                 } ?>
                             </div>
