@@ -66,7 +66,6 @@ class Login extends CI_Controller {
 				'status'=>'Pending'
 			);
 			$this->codes->addCode($data);
-			$this->load->view('PHPMailerAutoload');
 			$mail = new PHPMailer;
 
 			// $mail->SMTPDebug = 4;                               // Enable verbose debug output

@@ -345,6 +345,38 @@ Sizes: [
 											<td align="center" valign="top">
 												<!-- FLEXIBLE CONTAINER // -->
 												<table border="0" cellpadding="30" cellspacing="0" width="500" class="flexibleContainer">
+												<tr>
+														<td valign="top" width="500" class="flexibleContainerCell">
+
+															<!-- CONTENT TABLE // -->
+															<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+																<tr>
+																	<td align="left" valign="top" class="flexibleContainerBox">
+																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
+																			<tr>
+																				<td align="left" class="textContent">
+                                          <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Consumer: <?php echo $consumer ?></div>
+																					<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Account Number: <?php echo $account_number ?></div>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																	<td align="right" valign="middle" class="flexibleContainerBox">
+																		<table class="flexibleContainerBoxNext" border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
+																			<tr>
+																				<td align="left" class="textContent">
+                                          <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Date: <?php echo date('F d, Y') ?></div>
+																					<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">Time:<?php echo date('h:m:s A') ?></div>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+															<!-- // CONTENT TABLE -->
+
+														</td>
+													</tr>
 													<tr>
 														<td valign="top" width="500" class="flexibleContainerCell">
 
@@ -405,7 +437,7 @@ Sizes: [
 																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
 																			<tr>
 																				<td align="left" class="textContent">
-                                                                                    <h3><div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">TOTAL AMOUNT DUE: <?php echo $bill ?></div></h3>
+																					<h3><div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">TOTAL AMOUNT DUE: <?php echo '₱'.$bill ?></div></h3>
 																				</td>
 																			</tr>
 																		</table>
@@ -442,7 +474,10 @@ Sizes: [
 															<table border="0" cellpadding="0" cellspacing="0" width="50%">
 																<tr>
 																	<td align="center" valign="middle" style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
-																		Total amount paid: <?php echo $bill ?>
+																		Total amount paid: <?php echo '₱'.$bill ?>
+																	</td>
+																	<td align="center" valign="middle" style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
+																		Balance: <?php echo '₱0.00' ?>
 																	</td>
 																</tr>
 															</table>

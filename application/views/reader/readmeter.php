@@ -146,7 +146,7 @@
         </div>
         <?php }else{ ?>
             <div class="col-lg-12 col-sm-12">
-                <div class="alert alert-danger">
+                <div class="alert alert-info">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
                 <span class="ti ti-info"></span> Already readed for this month!
             </div>

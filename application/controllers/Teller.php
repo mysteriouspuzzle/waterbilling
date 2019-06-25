@@ -60,13 +60,13 @@ class Teller extends CI_Controller {
 			$this->bills->updateBillDetails($billId, $billupdate);
 			$billDetails = $this->bills->getBillDetails($billId);
 			$consumer = $this->consumers->getConsumerDetails($billDetails->consumer_id);
-			$this->sendEmail($consumer, $billDetails);
+			$this->sendEmail($consumer, $billDetails, $data);
 		}
 		$this->session->set_flashdata('success','Payment success!');
 		$this->load->view('teller/receipt', $data);
 	}
 
-	function sendEmail($consumer, $billDetails){
+	function sendEmail($consumer, $billDetails, $data){
 		$this->load->view('PHPMailerAutoload');
 		$mail = new PHPMailer;
 
@@ -91,6 +91,8 @@ class Teller extends CI_Controller {
 		$data['curr_date'] = $billDetails->present_date;
 		$data['current_meter'] = $billDetails->present_meter;
 		$data['prev_meter'] = $billDetails->previous_meter;
+		$data['consumer'] = $consumer->firstname . ' ' . $consumer->lastname;
+		$data['account_number'] = $consumer->account_number;
 		$data['bill'] = $billDetails->bill;
 		$msg = $this->load->view('paypal/receipt-email',$data,true);
 		$mail->Body    = $msg;
