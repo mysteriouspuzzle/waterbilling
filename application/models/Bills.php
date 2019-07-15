@@ -71,5 +71,5 @@ class Bills extends CI_Model {
   
   public function getUnsentDueConsumers(){
 		return $this->db->query("SELECT * FROM bills b, consumers c WHERE b.due_date <= NOW() and b.status = 'Unpaid' and b.consumer_id = c.id and b.due_notif = 'Unsent' order by b.due_notif desc")->result();
-	}
+  }
 }

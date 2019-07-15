@@ -61,7 +61,7 @@
                         <td><?php echo $dc->contactNumber ?></td>
                         <td><?php echo date('F d, Y',strtotime(date('Y-m-d', strtotime($dc->due_date))." +3 month")) ?></td>
                         <td>
-                          <a href="accounting/reconnect/<?php echo $dc->id ?>" class="btn btn-danger"><span class="ti ti-link"></span> Reconnect</a>
+                          <a href="accounting/reconnect/<?php echo $dc->id ?>" class="btn btn-success"><span class="ti ti-link"></span> Reconnect</a>
                         </td>
                     </tr>
                   <?php } ?>

@@ -205,6 +205,22 @@ class Accounting extends CI_Controller {
 
 	public function reconnect($id) {
 		$this->db->query("update consumers set is_disconnected = '0' where id = $id");
+		$prev_reading = $this->reading->getPreviousMeterReading($id);
+		$data = array(
+			'consumer_id' => $id,
+			'previous_date' => $prev_reading->previous_date,
+			'present_date' => $prev_reading->present_date,
+			'previous_meter' => $prev_reading->previous_meter,
+			'present_meter' => $prev_reading->present_meter,
+			'consumption' => $prev_reading->consumption,
+			'bill' => '70.00',
+			'date' => date('Y-m-d'),
+			'due_date' => date('Y-m-d'),
+			'status' => 'Paid',
+			'notification' => 'Unsent',
+			'due_notif' => 'Unsent'
+		);
+		$this->bills->saveTransaction($data);
 		redirect('accounting/recon');
 	}
 }
